@@ -25,7 +25,7 @@ body {
   z-index: 1000;
 }
 
-/* Logo + 25 anos */
+/* Logo */
 .logo-container {
   display: flex;
   align-items: center;
@@ -35,21 +35,12 @@ body {
 .logo-text {
   font-size: 28px;
   font-weight: bold;
-  color: #2e7d32; /* verde do Reclame Aqui */
+  color: #fed531; /* amarelo dominante */
 }
 
 .logo-highlight {
-  color: #c62828; /* vermelho característico */
+  color: #f5c000; /* tom um pouco mais escuro para destaque (ajuste se quiser exatamente #fed531) */
   font-weight: 900;
-}
-
-.anos {
-  font-size: 12px;
-  font-weight: bold;
-  color: #757575;
-  background-color: #e8f5e9;
-  padding: 4px 8px;
-  border-radius: 12px;
 }
 
 /* Barra de busca */
@@ -76,8 +67,8 @@ body {
 }
 
 .search-input:focus {
-  border-color: #2e7d32;
-  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
+  border-color: #fed531;
+  box-shadow: 0 0 0 3px rgba(254, 213, 49, 0.25);
 }
 
 .search-button {
@@ -108,22 +99,22 @@ body {
 
 .btn-login {
   background: transparent;
-  border: 1px solid #2e7d32;
-  color: #2e7d32;
+  border: 1px solid #fed531;
+  color: #fed531;
 }
 
 .btn-login:hover {
-  background: rgba(46, 125, 50, 0.08);
+  background: rgba(254, 213, 49, 0.08);
 }
 
 .btn-register {
-  background: #2e7d32;
-  color: white;
+  background: #fed531;
+  color: #1a1a1a;
   border: none;
 }
 
 .btn-register:hover {
-  background: #1b5e20;
+  background: #f5c000;
 }
 
 /* Responsividade */
@@ -146,9 +137,6 @@ body {
 @media (max-width: 600px) {
   .logo-text {
     font-size: 22px;
-  }
-  .anos {
-    font-size: 10px;
   }
   .btn {
     padding: 8px 16px;

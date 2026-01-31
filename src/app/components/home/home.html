@@ -1,38 +1,29 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Quejarse Aqui</title>
-  <!-- Favicon (opcional - coloque seu favicon.ico na raiz) -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
-</head>
-<body>
-  <header class="header">
-    <div class="logo-container">
-      <span class="logo-text">Quejarse<span class="logo-highlight">Aqui</span></span>
-    </div>
+<header class="header">
+  <div class="logo-container">
+    <span class="logo-text">Queja<span class="logo-highlight">Cierta</span></span>
+  </div>
 
-    <div class="search-bar-container">
-      <div class="search-wrapper">
-        <input 
-          type="text" 
-          placeholder="O que você procura?" 
-          class="search-input"
-        />
-        <button class="search-button">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2">
-            <circle cx="11" cy="11" r="8"/>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
-        </button>
-      </div>
+  <div class="search-bar-container">
+    <div class="search-wrapper">
+      <input type="text" placeholder="O que você procura?" class="search-input" />
+      <button class="search-button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fed531" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
     </div>
+  </div>
 
-    <div class="auth-buttons">
-      <button class="btn btn-login">Entrar</button>
-      <button class="btn btn-register">Criar conta</button>
-    </div>
-  </header>
-</body>
-</html>
+  <div class="auth-buttons">
+    <button class="btn btn-login">Entrar</button>
+    <button class="btn btn-register" (click)="openModal()">Criar conta</button>
+  </div>
+</header>
+
+<!-- Modal -->
+<app-acc-create 
+  *ngIf="showModal"
+  (close)="closeModal()"
+  (submit)="onCreateUser($event)"
+></app-acc-create>
