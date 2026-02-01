@@ -1,0 +1,199 @@
+.second-bar-section {
+  background: linear-gradient(to bottom, #fff8e1 0%, #fffde7 100%);
+  color: #1a1a1a;
+  font-family: Arial, sans-serif;
+  min-height: 500px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Faixa amarela superior */
+.top-bar {
+  background: #fed531;
+  height: 40px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+  line-height: 1;
+  border-bottom: 1px solid #e6c000;
+}
+
+.top-bar span {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.top-bar span:hover {
+  color: #e6c000;
+}
+
+/* Conteúdo principal */
+.main-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px 60px 40px;
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.center-text {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.center-text h1 {
+  font-size: 34px;
+  margin-bottom: 16px;
+  line-height: 1.2;
+  color: #fed531;
+  font-weight: bold;
+}
+
+.center-text p {
+  font-size: 17px;
+  margin-bottom: 32px;
+  color: #444;
+  line-height: 1.5;
+}
+
+/* Botões de ação (mais compactos, ícones menores) */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.btn-reclamar,
+.btn-minhas {
+  background: white;
+  color: #1a1a1a;
+  border: 3px solid #fed531;
+  border-radius: 12px;
+  padding: 20px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+  min-width: 240px;
+  box-shadow: 0 6px 16px rgba(254, 213, 49, 0.15);
+}
+
+.btn-reclamar:hover,
+.btn-minhas:hover {
+  background: #fed531;
+  color: #1a1a1a;
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(254, 213, 49, 0.35);
+}
+
+.btn-empresas {
+  background: white;
+  color: #fed531;
+  border: 3px solid #fed531;
+  border-radius: 12px;
+  padding: 20px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  min-width: 240px;
+  cursor: default;
+}
+
+/* Ícones nos botões - REDUZIDO */
+.icon {
+  font-size: 28px;           /* ← Ícones menores, como na imagem base */
+  display: block;
+  margin-bottom: 3px;        /* ← menos espaço abaixo do ícone */
+}
+
+/* Ícones laterais (quadrados amarelos com carinha) */
+.logo-left,
+.logo-right {
+  position: absolute;
+  top: 55%;
+  transform: translateY(-50%);
+  width: 280px;              /* pode reduzir para 140px se quiser ainda menor */
+  opacity: 0.95;
+  z-index: 1;
+}
+
+.logo-left {
+  left: 3%;
+}
+
+.logo-right {
+  right: 3%;
+}
+
+.icon-left,
+.icon-right {
+  width: 100%;
+  height: auto;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+  .main-content {
+    padding: 20px 40px 30px;
+  }
+
+  .center-text h1 {
+    font-size: 30px;
+  }
+
+  .action-buttons {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 992px) {
+  .main-content {
+    flex-direction: column;
+    padding: 20px 30px 20px;
+  }
+
+  .logo-left, .logo-right {
+    display: none;
+  }
+
+  .center-text h1 {
+    font-size: 28px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .center-text h1 {
+    font-size: 24px;
+  }
+
+  .center-text p {
+    font-size: 16px;
+  }
+
+  .btn-reclamar, .btn-minhas, .btn-empresas {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+  }
+
+  .icon {
+    font-size: 24px;         /* ainda menor em mobile */
+    margin-bottom: 4px;
+  }
+}
