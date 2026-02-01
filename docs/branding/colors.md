@@ -12,7 +12,7 @@ The goal is to ensure **visual consistency**, **accessibility**, and **clear hie
 | Dominant | Yellow | `#fed531` |
 | Support | Charcoal | `#3a3a3a` |
 | Neutral | Soft White | `#fafaf9` |
-| Staging | Olive-oil green | `#2e3a2f` |
+| Staging | stage green | `#2e3a2f` |
 
 ---
 
@@ -89,7 +89,7 @@ Soft white reduces eye strain and feels more organic, especially when paired wit
 
 ---
 
-## 4. Staging Color — Deep Green
+## 4. Staging Color — stage green
 
 **Hex:** `#2e3a2f`
 
@@ -115,7 +115,7 @@ Think of it as a *stage* where the brand can sit on top and where *queja-cierta*
 1. **Soft White** — base canvas
 2. **Charcoal** — structure & readability
 3. **Yellow** — attention & brand identity
-4. **Deep Green** — contrast & staging
+4. **stage green** — contrast & staging
 
 This hierarchy ensures visual clarity and prevents color overload.
 
@@ -128,9 +128,9 @@ This hierarchy ensures visual clarity and prevents color overload.
 - Preferred text pairings:
   - Charcoal on Soft White ✅
   - Charcoal on Yellow ✅
-  - Soft White on Deep Green ✅
+  - Soft White on stage green ✅
 - Avoid:
   - Yellow text on Soft White ❌
-  - Yellow text on Green ❌
+  - Yellow text on stage green ❌
 
 ---

@@ -1,189 +1,206 @@
 # 🎨 Color Usage Guidelines
-**Yellow · Charcoal · Soft White**
 
-## Purpose
-These guidelines define how and where to use each color to ensure:
+**Yellow · Charcoal · Soft White · Staging Green**
 
-- Visual consistency
-- WCAG AA accessibility
-- Brand maturity
-- Scalable UI design
+These guidelines define **how colors must be used in the UI**, in alignment with the design tokens defined in `tokens/colors.json`.
+
+> **Design intent lives here.  
+> Color values and mappings live in tokens.**
 
 ---
 
-## 🎯 Color Roles
+## 🧠 System Overview
 
-### 🟡 Yellow — *Attention & Identity*
-**Role:** Accent / emphasis  
-**Never used as default text color**
+The color system is based on **semantic roles**, not raw colors.
 
-Use yellow to:
-- Draw attention
-- Highlight actions
-- Express brand personality
+- Colors are consumed via **themes** (`light`, `dark`, `staging`)
+- Components must use **semantic tokens** (`bg`, `fg`, `primary`, `surface`)
+- Interactive states must use **state tokens**
+- Hex values must never be used directly in components
 
-Avoid yellow for:
+---
+
+## 🎯 Core Color Roles
+
+### 🟡 Yellow — *Action & Emphasis*
+**Design role:** Attention  
+**Token source:** `color.brand.dominant`  
+**Theme mapping:** `color.themes.*.primary`
+
+Use yellow for:
+- Primary CTAs
+- High-importance actions
+- Active or selected indicators
+- Brand highlights
+
+Do **not** use yellow for:
 - Body text
-- Long-form reading
+- Large backgrounds
 - Dense UI surfaces
+
+> Yellow represents **action**, not structure.
 
 ---
 
 ### ⚫ Charcoal — *Structure & Authority*
-**Role:** Primary text and structural color
+**Design role:** Structure / readability  
+**Token source:** `color.brand.support`  
+**Theme mapping:** `color.themes.light.fg`
 
 Use charcoal for:
 - Body text
 - Headings
-- Navigation
 - Icons
-- Borders
+- Borders and dividers
 - UI scaffolding
 
-Charcoal is the foundation of readability.
+Charcoal is the **default reading color** in light theme and the **on-primary color** across themes.
 
 ---
 
-### 🤍 Soft White — *Breathing Space*
-**Role:** Primary background and surface color
+### 🤍 Soft White — *Canvas & Breathing Space*
+**Design role:** Neutral background  
+**Token source:** `color.neutral.base`  
+**Theme mapping:** `color.themes.light.bg`
 
 Use soft white for:
 - Page backgrounds
-- Cards
-- Containers
+- Cards and containers
 - Content-heavy layouts
+- Reading surfaces
 
-Soft white reduces fatigue and balances yellow’s energy.
-
----
-
-## 📄 Page-Level Usage
-
-### Backgrounds
-
-| Element | Color |
-|------|------|
-| Page background | Soft white |
-| Section background | Soft white (variation allowed) |
-| Hero / emphasis section | Charcoal |
-
-> ⚠️ Avoid yellow as a full-page background.
+Soft white is intentionally used instead of pure white to reduce eye strain.
 
 ---
 
-## ✍️ Typography
+### 🌿 Staging Green — *Context & Presence*
+**Design role:** Staging / atmosphere  
+**Token source:** `color.stage.primary`  
+**Theme mapping:** `color.themes.staging.bg`
 
-| Element | Color | Notes |
-|------|------|------|
-| Body text | Charcoal | WCAG AA+ |
-| Headings | Charcoal | Yellow accents allowed |
-| Secondary text | Muted charcoal | Maintain contrast |
-| Disabled text | Muted charcoal | Never yellow |
+The staging green is **not a general UI color**.
 
-❌ Yellow text on light backgrounds is **not allowed**.
+Use staging green only for:
+- Hero sections and landing headers
+- Logo backgrounds (brand stage)
+- Marketing or storytelling sections
+- Empty or quiet states
 
----
-
-## 🔘 Buttons
-
-### Primary Button
-- **Background:** Yellow
-- **Text:** Charcoal
-
-Use for:
-- Main CTAs
-- Key actions
-
----
-
-### Secondary Button
-- **Background:** Transparent / Soft white
-- **Border:** Charcoal
-- **Text:** Charcoal
-
----
-
-### Tertiary / Ghost Button
-- **Text:** Charcoal
-- **Hover / Focus:** Yellow underline or highlight
-
----
-
-## 🧭 Navigation
-
-- **Background:** Soft white or Charcoal
-- **Text:** High-contrast (Charcoal or Soft white)
-- **Active item:** Yellow indicator (underline / dot)
-
-Yellow indicates state, not structure.
-
----
-
-## 🧱 Cards & Containers
-
-- **Background:** Soft white
-- **Border / Divider:** Subtle charcoal
-- **Hover / Focus:** Yellow accent (outline or top bar)
-
----
-
-## 🎯 Icons & Indicators
-
-| State | Color |
-|----|----|
-| Default | Charcoal |
-| Active / Selected | Yellow |
-| Disabled | Muted charcoal |
-
-Avoid large groups of yellow icons.
-
----
-
-## ⚠️ States & Feedback
-
-| State | Usage |
-|----|----|
-| Highlight / Success | Yellow accent + charcoal text |
-| Warning | Yellow tint background + charcoal text |
-| Error | ❌ Never yellow (use error color) |
-
----
-
-## 🌗 Light & Dark Mode
-
-### Light Mode
-- Background: Soft white
-- Text: Charcoal
-- Accent: Yellow
-
-### Dark Mode
-- Background: Charcoal
-- Text: Soft white
-- Accent: Yellow
-
----
-
-## ♿ Accessibility (WCAG AA)
-
-✔ Charcoal on Soft white  
-✔ Charcoal on Yellow  
-✔ Soft white on Charcoal  
-
-❌ Yellow on Soft white  
-❌ Yellow on light gray  
-
-Always validate contrast for:
+Do **not** use staging green for:
 - Buttons
-- Links
-- Small text
-- Icons
+- Text-heavy layouts
+- Interactive states
+
+> Staging green provides **presence**, not action.
 
 ---
 
-## 🧠 Design Principles
+## 🌗 Themes
 
-- **Yellow attracts**
+Themes remap the same semantic roles to different values.
+
+### ☀️ Light Theme
+**Token namespace:** `color.themes.light`
+
+- Background: `bg`
+- Text: `fg`
+- Primary action: `primary`
+- Surface: `surface`
+
+This is the **default application theme**.
+
+---
+
+### 🌑 Dark Theme
+**Token namespace:** `color.themes.dark`
+
+- Background is **near-black**, not charcoal
+- Text switches to soft white
+- Yellow remains the primary action color
+
+Charcoal remains a **structural brand color**, not a dark-mode background.
+
+---
+
+### 🎭 Staging Theme
+**Token namespace:** `color.themes.staging`
+
+Used only in **specific sections**, not full application shells.
+
+- Background: staging green
+- Text: soft white
+- Primary actions invert for contrast
+
+---
+
+## 🔘 Interactive States
+
+Interactive states must always use **state tokens**.
+
+### Primary action states
+| State | Token |
+|-----|------|
+| Default | `color.themes.*.primary` |
+| Hover | `color.state.hover.primaryBg` |
+| Active | `color.state.active.primaryBg` |
+| Disabled (bg) | `color.themes.*.disabledBg` |
+| Disabled (text) | `color.themes.*.disabledFg` |
+
+Do **not** derive states manually or darken colors ad-hoc.
+
+---
+
+## 🧱 Common UI Patterns
+
+### Buttons
+- **Primary button:** `primary` + `onPrimary`
+- **Secondary button:** surface + border + `fg`
+- **Ghost button:** text only, with yellow accent on hover
+
+### Cards & Containers
+- Background: `surface`
+- Border: `border`
+- Hover: subtle yellow accent only
+
+### Navigation
+- Background: `bg` or `surface`
+- Active item: yellow indicator (underline / dot)
+
+Yellow indicates **state**, not structure.
+
+---
+
+## ♿ Accessibility Rules
+
+Allowed combinations:
+- Charcoal on soft white ✅
+- Charcoal on yellow ✅
+- Soft white on staging green ✅
+
+Not allowed:
+- Yellow text on soft white ❌
+- Yellow text on staging green ❌
+- Low-contrast yellow states ❌
+
+All components must meet **WCAG AA** contrast requirements.
+
+---
+
+## 🧠 Design Principles (Summary)
+
+- **Soft white is the canvas**
 - **Charcoal explains**
-- **Soft white breathes**
+- **Yellow acts**
+- **Green stages**
 
-> If yellow is everywhere, it loses meaning.
+> If yellow is everywhere, it loses meaning.  
+> If green is interactive, hierarchy breaks.
+
+---
+
+## 🔒 Final Rules
+
+- Never use raw hex values in UI code
+- Never invent new colors outside tokens
+- Never use staging green as an action color
+- Always design with semantic intent first
