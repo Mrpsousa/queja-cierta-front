@@ -27,11 +27,14 @@ export class AccCreateComponent {
     });
   }
 
-  onSubmit() {
-    if (this.form.valid) {
-      this.submit.emit(this.form.value);
-      this.close.emit();
-    }
+  onSubmit(event: Event) {
+    event.preventDefault();  // impede submit nativo do form
+    event.stopPropagation(); // impede bubble
+
+  if (this.form.valid) {
+    this.submit.emit(this.form.value);
+    this.close.emit();
+  }
   }
 
   onClose() {

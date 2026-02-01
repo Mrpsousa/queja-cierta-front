@@ -1,50 +1,50 @@
 <div class="modal-overlay" (click)="onClose()">
   <div class="modal-content" (click)="$event.stopPropagation()">
-    <h2>Criar Conta</h2>
+    <h2>Crear Cuenta</h2>
     
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
       <div class="form-group">
-        <label for="full_name">Nome completo</label>
+        <label for="full_name">Nombre completo</label>
         <input 
           id="full_name" 
           formControlName="full_name" 
           type="text" 
-          placeholder="Digite seu nome completo"
+          placeholder="Escribe tu nombre completo"
         />
         <div *ngIf="form.get('full_name')?.invalid && form.get('full_name')?.touched" class="error">
-          Nome completo é obrigatório (mínimo 3 caracteres)
+          El nombre completo es obligatorio (mínimo 3 caracteres)
         </div>
       </div>
 
       <div class="form-group">
-        <label for="email">Email</label>
+        <label for="email">Correo electrónico</label>
         <input 
           id="email" 
           formControlName="email" 
           type="email" 
-          placeholder="seu@email.com"
+          placeholder="tu@email.com"
         />
         <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="error">
-          Email inválido
+          Correo electrónico inválido
         </div>
       </div>
 
       <div class="form-group">
-        <label for="username">Nome de usuário</label>
+        <label for="username">Nombre de usuario</label>
         <input 
           id="username" 
           formControlName="username" 
           type="text" 
-          placeholder="seu_usuario"
+          placeholder="tu usuario"
         />
         <div *ngIf="form.get('username')?.invalid && form.get('username')?.touched" class="error">
-          Nome de usuário obrigatório (mínimo 4 caracteres)
+          Nombre de usuario obligatorio (mínimo 4 caracteres)
         </div>
       </div>
 
       <div class="modal-actions">
         <button type="button" class="btn-cancel" (click)="onClose()">Cancelar</button>
-        <button type="submit" class="btn-submit" [disabled]="form.invalid">Criar Conta</button>
+        <button type="submit" class="btn-submit" [disabled]="form.invalid">Crear Cuenta</button>
       </div>
     </form>
   </div>
