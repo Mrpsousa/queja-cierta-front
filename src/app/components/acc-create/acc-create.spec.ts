@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccCreate } from './acc-create';
+import { AccCreateComponent } from './acc-create';
 
-describe('AccCreate', () => {
-  let component: AccCreate;
-  let fixture: ComponentFixture<AccCreate>;
+describe('AccCreateComponent', () => {
+  let component: AccCreateComponent;
+  let fixture: ComponentFixture<AccCreateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AccCreate]
+      imports: [AccCreateComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AccCreate);
+    fixture = TestBed.createComponent(AccCreateComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

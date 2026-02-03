@@ -4,16 +4,14 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-acc-create',
+  selector: 'app-main-bar',
   imports: [CommonModule, ReactiveFormsModule],
   standalone: true,
-  templateUrl: './acc-create.html',
-  styleUrl: './acc-create.css',
+  templateUrl: './main-bar.html',
+  styleUrl: './main-bar.css',
 })
 
-// export class AccCreate {}
-
-export class AccCreateComponent {
+export class MainBarComponent {
   @Output() close = new EventEmitter<void>();
   @Output() submit = new EventEmitter<{ full_name: string; email: string; username: string }>();
 

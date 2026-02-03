@@ -5,7 +5,11 @@
 
   <div class="search-bar-container">
     <div class="search-wrapper">
-      <input type="text" placeholder="O que você procura?" class="search-input" />
+      <input 
+        type="text" 
+        placeholder="¿Qué estás buscando?" 
+        class="search-input" 
+      />
       <button class="search-button">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fed531" stroke-width="2">
           <circle cx="11" cy="11" r="8"/>
@@ -16,8 +20,8 @@
   </div>
 
   <div class="auth-buttons">
-    <button class="btn btn-login">Entrar</button>
-    <button class="btn btn-register" (click)="openModal()">Criar conta</button>
+    <button class="btn btn-login">Iniciar sesión</button>
+    <button class="btn btn-register" (click)="openModal()">Crear cuenta</button>
   </div>
 </header>
 
@@ -27,3 +31,5 @@
   (close)="closeModal()"
   (submit)="onCreateUser($event)"
 ></app-acc-create>
+
+<app-second-bar></app-second-bar>

@@ -1,0 +1,38 @@
+<section class="second-bar-section">
+  <!-- Faixa amarela superior com links -->
+  <nav class="top-bar">
+    <span>Para ti</span>
+    <span>Mejores empresas</span>
+    <span>Detector de Sitio Confiable</span>
+    <span>Comparar</span>
+    <span>Descuentos</span>
+    <span>Para empresas</span>
+  </nav>
+
+  <!-- Área principal com fundo amarelo claro -->
+  <div class="main-content">
+    <!-- Ícone esquerdo (fixo à esquerda) -->
+    <div class="logo"></div>
+
+    <!-- Texto central -->
+    <div class="center-text">
+      <h1>¡QuejaCierta te acerca a las marcas que tienen la confianza del consumidor!</h1>
+      <p>
+        Compra de forma más segura, investigando empresas y buscando una solución para cualquier problema.
+      </p>
+
+      <div class="action-buttons">
+        @for (button of buttons; track button.text) {
+          <app-second-bar-card 
+            [icon]="button.icon" 
+            [text]="button.text"
+            (cardClick)="button.action()">
+          </app-second-bar-card>
+        }
+      </div>
+    </div>
+
+    <!-- Ícone direito (fixo à direita) -->
+    <div class="logo"></div>
+  </div>
+</section>
