@@ -1,10 +1,7 @@
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
+  inset: 0;
+  background: rgba(0,0,0,0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,85 +10,79 @@
 
 .modal-content {
   background: white;
-  padding: 32px;
+  padding: 2rem;
   border-radius: 12px;
-  width: 100%;
-  max-width: 480px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  width: 90%;
+  max-width: 500px;
   position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
-.modal-content h2 {
-  margin-bottom: 24px;
-  font-size: 24px;
-  color: #333;
+.btn-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #666;
+}
+
+h2 { text-align: center; margin-bottom: 1.5rem; }
+
+.profile-options {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.profile-card {
+  flex: 1;
   text-align: center;
+  padding: 2rem 1rem;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s;
 }
 
-.form-group {
-  margin-bottom: 20px;
+.profile-card:hover {
+  border-color: #28a745;
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
-  color: #444;
-}
+.consumidor .icon { font-size: 4rem; color: #28a745; }
+.empresa .icon { font-size: 4rem; color: #007bff; }
 
-.form-group input {
+.btn-primary {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 1rem;
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 16px;
-}
-
-.form-group input:focus {
-  outline: none;
-  border-color: #fed531;
-  box-shadow: 0 0 0 3px rgba(254, 213, 49, 0.2);
-}
-
-.error {
-  color: #d32f2f;
-  font-size: 13px;
-  margin-top: 6px;
 }
 
 .modal-actions {
   display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 24px;
+  justify-content: space-between;
+  margin-top: 1.5rem;
 }
 
-.btn-cancel {
-  background: #f5f5f5;
-  color: #333;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-}
+.btn-cancel { background: #6c757d; color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 8px; cursor: pointer; }
+.btn-submit { background: #28a745; color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 8px; cursor: pointer; }
 
-.btn-cancel:hover {
-  background: #e0e0e0;
-}
+.error { color: #dc3545; font-size: 0.9rem; margin-top: 0.3rem; }
+.mensagem-sucesso { color: #28a745; text-align: center; margin: 1rem 0; font-weight: bold; }
+.mensagem-erro { color: #dc3545; text-align: center; margin: 1rem 0; }
 
-.btn-submit {
-  background: #fed531;
-  color: #1a1a1a;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.btn-submit:disabled {
-  background: #ffe082;
-  cursor: not-allowed;
-}
-
+.form-group { margin-bottom: 1.2rem; }
+label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+input { width: 100%; padding: 0.7rem; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; }
