@@ -1,20 +1,18 @@
 <section class="second-bar-section">
   <!-- Faixa amarela superior com links -->
-  <div class="top-bar">
+  <nav class="top-bar">
     <span>Para ti</span>
     <span>Mejores empresas</span>
     <span>Detector de Sitio Confiable</span>
     <span>Comparar</span>
     <span>Descuentos</span>
     <span>Para empresas</span>
-  </div>
+  </nav>
 
   <!-- Área principal com fundo amarelo claro -->
   <div class="main-content">
     <!-- Ícone esquerdo (fixo à esquerda) -->
-    <div class="logo-left">
-      <img src="/icone-01.png" alt="Ícono izquierdo" class="icon-left" />
-    </div>
+    <div class="logo"></div>
 
     <!-- Texto central -->
     <div class="center-text">
@@ -24,21 +22,17 @@
       </p>
 
       <div class="action-buttons">
-        <button class="btn-reclamar" (click)="fazerReclamacao()">
-          <span class="icon">📢</span>
-          Haz una<br>reclamación
-        </button>
-
-        <button class="btn-minhas" (click)="minhasReclamacoes()">
-          <span class="icon">📂</span>
-          Mis<br>Reclamaciones
-        </button>
+        @for (button of buttons; track button.text) {
+          <app-second-bar-card 
+            [icon]="button.icon" 
+            [text]="button.text"
+            (cardClick)="button.action()">
+          </app-second-bar-card>
+        }
       </div>
     </div>
 
     <!-- Ícone direito (fixo à direita) -->
-    <div class="logo-right">
-      <img src="/icone-01.png" alt="Ícono derecho" class="icon-right" />
-    </div>
+    <div class="logo"></div>
   </div>
 </section>

@@ -1,0 +1,99 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "color": {
+    "brand": {
+      "dominant": {
+        "value": "#fed531",
+        "description": "Primary brand color. Used for emphasis, CTAs, and key brand moments."
+      },
+      "support": {
+        "value": "#3a3a3a",
+        "description": "Structural support color. Used for text, icons, and UI foundations."
+      }
+    },
+    "neutral": {
+      "base": {
+        "value": "#fafaf9",
+        "description": "Primary neutral background color. Serves as the main canvas."
+      }
+    },
+    "stage": {
+      "primary": {
+        "value": "#2e3a2f",
+        "description": "Staging color used to create contrast zones and background stages for branding."
+      }
+    },
+
+    "themes": {
+      "light": {
+        "bg": { "value": "{color.neutral.base.value}" },
+        "fg": { "value": "{color.brand.support.value}" },
+
+        "surface": { "value": "#ffffff", "description": "Cards / panels on light background." },
+        "border": { "value": "rgba(58,58,58,0.12)", "description": "Default subtle border on light." },
+
+        "primary": { "value": "{color.brand.dominant.value}" },
+        "onPrimary": { "value": "{color.brand.support.value}" },
+
+        "mutedFg": { "value": "rgba(58,58,58,0.70)" },
+        "disabledFg": { "value": "rgba(58,58,58,0.35)" },
+        "disabledBg": { "value": "rgba(58,58,58,0.08)" }
+      },
+
+      "dark": {
+        "bg": { "value": "#121212", "description": "Dark canvas." },
+        "fg": { "value": "#fafaf9", "description": "Primary text on dark." },
+
+        "surface": { "value": "#1a1a1a" },
+        "border": { "value": "rgba(250,250,249,0.14)" },
+
+        "primary": { "value": "{color.brand.dominant.value}" },
+        "onPrimary": { "value": "{color.brand.support.value}" },
+
+        "mutedFg": { "value": "rgba(250,250,249,0.75)" },
+        "disabledFg": { "value": "rgba(250,250,249,0.35)" },
+        "disabledBg": { "value": "rgba(250,250,249,0.10)" }
+      },
+
+      "staging": {
+        "bg": { "value": "{color.stage.primary.value}", "description": "Stage canvas behind logo or hero." },
+        "fg": { "value": "{color.neutral.base.value}" },
+
+        "surface": { "value": "rgba(250,250,249,0.06)" },
+        "border": { "value": "rgba(250,250,249,0.16)" },
+
+        "primary": { "value": "{color.neutral.base.value}" },
+        "onPrimary": { "value": "{color.stage.primary.value}" },
+
+        "mutedFg": { "value": "rgba(250,250,249,0.75)" },
+        "disabledFg": { "value": "rgba(250,250,249,0.40)" },
+        "disabledBg": { "value": "rgba(250,250,249,0.10)" }
+      }
+    },
+
+    "state": {
+      "hover": {
+        "primaryBg": {
+          "value": "#f4c61e",
+          "description": "Hover state for primary surfaces (slightly darker than dominant)."
+        }
+      },
+      "active": {
+        "primaryBg": {
+          "value": "#eabf16",
+          "description": "Active/pressed state for primary surfaces."
+        }
+      },
+      "disabled": {
+        "primaryBg": {
+          "value": "{color.themes.light.disabledBg.value}",
+          "description": "Disabled background default (theme may override via CSS vars)."
+        },
+        "fg": {
+          "value": "{color.themes.light.disabledFg.value}",
+          "description": "Disabled foreground default (theme may override via CSS vars)."
+        }
+      }
+    }
+  }
+}
