@@ -1,0 +1,96 @@
+<section class="main-content">
+  <div class="main-content__container">
+    <div class="main-content__left">
+      <h2>Mejores empresas en Queja Cierta</h2>
+
+      <p>
+        Mira cuáles son las empresas más confiables de cada categoría
+        de Queja Cierta. Explora nuestra página y toma
+        decisiones importantes con mayor seguridad.
+      </p>
+
+      <button type="button">Ver todas las categorías</button>
+    </div>
+
+    <div class="main-content__right">
+      <span>Selecciona una categoría:</span>
+
+      <select
+        name="category"
+        id="category"
+        [value]="selectedCategory"
+        (change)="onCategoryChange($event)"
+      >
+        <option *ngFor="let category of categories" [value]="category.value">
+          {{ category.label }}
+        </option>
+      </select>
+
+      <div class="main-content__actions">
+        <button
+          type="button"
+          [class.is-active]="rankingMode === 'best'"
+          [attr.aria-pressed]="rankingMode === 'best'"
+          (click)="setRankingMode('best')"
+        >
+          Mejores
+        </button>
+        <button
+          type="button"
+          class="is-worst-button"
+          [class.is-active]="rankingMode === 'worst'"
+          [class.is-worst]="rankingMode === 'worst'"
+          [attr.aria-pressed]="rankingMode === 'worst'"
+          (click)="setRankingMode('worst')"
+        >
+          Peores
+        </button>
+      </div>
+
+      <span>Referente a los últimos 6 años</span>
+
+      <ol class="ranking-list">
+        <li class="ranking-item" *ngFor="let company of displayedCompanies; let i = index">
+          <a
+            [href]="company.link"
+            class="ranking-card"
+            [class.ranking-card--negative]="rankingMode === 'worst'"
+          >
+            <span class="ranking-position">{{ formatPosition(i) }}</span>
+            <span class="ranking-logo" [ngClass]="company.logoClass">
+              {{ company.logoText }}
+            </span>
+            <div class="ranking-company">
+              <div class="ranking-company-top">
+                <strong>{{ company.name }}</strong>
+                <span
+                  *ngIf="company.verified; else warningBadge"
+                  class="ranking-verified"
+                  aria-label="Empresa verificada"
+                >
+                  ✓
+                </span>
+                <ng-template #warningBadge>
+                  <span class="ranking-warning" aria-label="Empresa con alertas">!</span>
+                </ng-template>
+              </div>
+              <div class="ranking-company-score">
+                <span
+                  class="ranking-indicator"
+                  [class.ranking-indicator--negative]="rankingMode === 'worst'"
+                  aria-hidden="true"
+                >
+                  {{ rankingMode === 'worst' ? '☹' : '' }}
+                </span>
+                <span class="ranking-score"><strong>{{ company.score }}</strong> /10</span>
+              </div>
+              <span class="ranking-company-meta">{{ company.status }}</span>
+            </div>
+          </a>
+        </li>
+      </ol>
+
+      <a href="#" class="main-content__link">Ver todas las empresas</a>
+    </div>
+  </div>
+</section>
