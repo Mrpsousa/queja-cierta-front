@@ -5,11 +5,12 @@ import { UserService, CreateUserRequest } from '../../services/user/user';
 import { CommonModule } from '@angular/common';
 import { AccCreateComponent } from '../acc-create/acc-create';
 import { SecondBar } from '../second-bar/second-bar';
+import { MainContent } from "../main-content/main-content";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, AccCreateComponent, SecondBar],
+  imports: [CommonModule, AccCreateComponent, SecondBar, MainContent],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
