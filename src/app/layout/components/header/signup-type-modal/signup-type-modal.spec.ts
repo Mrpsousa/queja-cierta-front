@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MainBarComponent } from './main-bar';
+import { SignupTypeModalComponent } from './signup-type-modal';
 
-describe('MainBarComponent', () => {
-  let component: MainBarComponent;
-  let fixture: ComponentFixture<MainBarComponent>;
+describe('SignupTypeModalComponent', () => {
+  let component: SignupTypeModalComponent;
+  let fixture: ComponentFixture<SignupTypeModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MainBarComponent]
+      imports: [SignupTypeModalComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MainBarComponent);
+    fixture = TestBed.createComponent(SignupTypeModalComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

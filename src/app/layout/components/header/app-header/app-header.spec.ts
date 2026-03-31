@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SecondBar } from './second-bar';
+import { AppHeaderComponent } from './app-header';
 
-describe('SecondBar', () => {
-  let component: SecondBar;
-  let fixture: ComponentFixture<SecondBar>;
+describe('AppHeaderComponent', () => {
+  let component: AppHeaderComponent;
+  let fixture: ComponentFixture<AppHeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SecondBar]
+      imports: [AppHeaderComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SecondBar);
+    fixture = TestBed.createComponent(AppHeaderComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

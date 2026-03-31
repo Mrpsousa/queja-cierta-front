@@ -25,12 +25,12 @@
   </div>
 </header>
 
-<!-- Modal -->
-<app-acc-create 
-  *ngIf="showModal"
-  (close)="closeModal()"
-  (submit)="onCreateUser($event)"
-></app-acc-create>
+@if (showModal) {
+  <app-signup-type-modal
+    (close)="closeModal()"
+    (submit)="onCreateUser($event)"
+  />
+}
 
-<app-second-bar></app-second-bar>
+<app-hero-section></app-hero-section>
 <app-main-content></app-main-content>

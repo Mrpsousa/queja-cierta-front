@@ -1,11 +1,8 @@
-<!-- acc-create.html -->
-
 <div class="modal-overlay" (click)="onClose()">
   <div class="modal-content" (click)="$event.stopPropagation()">
     <button class="btn-close" (click)="onClose()">×</button>
 
-    <!-- Tela 1: Escolha de perfil -->
-    <ng-container *ngIf="step === 'choose'">
+    @if (step === 'choose') {
       <h2>Como você quer se cadastrar?</h2>
       <p>Para começar, escolha o seu tipo de perfil:</p>
 
@@ -24,10 +21,9 @@
           <button class="btn-primary">Cadastrar como empresa</button>
         </div>
       </div>
-    </ng-container>
+    }
 
-    <!-- Tela 2: Formulário Consumidor -->
-    <ng-container *ngIf="step === 'consumer'">
+    @if (step === 'consumer') {
       <h2>Cadastro como Consumidor</h2>
 
       <form [formGroup]="consumerForm" (ngSubmit)="onSubmitconsumer($event)">
@@ -39,9 +35,9 @@
             type="text" 
             placeholder="123.456.789-00 ou outro documento"
           />
-          <div *ngIf="consumerForm.get('document_id')?.invalid && consumerForm.get('document_id')?.touched" class="error">
+          @if (consumerForm.get('document_id')?.invalid && consumerForm.get('document_id')?.touched) {
             Documento é obrigatório
-          </div>
+          }
         </div>
 
         <div class="form-group">
@@ -52,9 +48,9 @@
             type="text" 
             placeholder="seu_usuario"
           />
-          <div *ngIf="consumerForm.get('username')?.invalid && consumerForm.get('username')?.touched" class="error">
+          @if (consumerForm.get('username')?.invalid && consumerForm.get('username')?.touched) {
             Nome de usuário obrigatório (mínimo 4 caracteres)
-          </div>
+          }
         </div>
 
         <div class="form-group">
@@ -65,9 +61,9 @@
             type="email" 
             placeholder="seu@email.com"
           />
-          <div *ngIf="consumerForm.get('email')?.invalid && consumerForm.get('email')?.touched" class="error">
+          @if (consumerForm.get('email')?.invalid && consumerForm.get('email')?.touched) {
             E-mail inválido
-          </div>
+          }
         </div>
 
         <div class="form-group">
@@ -78,9 +74,9 @@
             type="text" 
             placeholder="Seu Nome Completo"
           />
-          <div *ngIf="consumerForm.get('full_name')?.invalid && consumerForm.get('full_name')?.touched" class="error">
+          @if (consumerForm.get('full_name')?.invalid && consumerForm.get('full_name')?.touched) {
             Nome completo obrigatório (mínimo 3 caracteres)
-          </div>
+          }
         </div>
 
         <div class="form-group">
@@ -91,21 +87,24 @@
             type="password" 
             placeholder="Mínimo 6 caracteres"
           />
-          <div *ngIf="consumerForm.get('password')?.invalid && consumerForm.get('password')?.touched" class="error">
+          @if (consumerForm.get('password')?.invalid && consumerForm.get('password')?.touched) {
             Senha obrigatória (mínimo 6 caracteres)
-          </div>
+          }
         </div>
 
-        <!-- Mensagens de feedback -->
-        <div class="mensagem-sucesso" *ngIf="mensagem">{{ mensagem }}</div>
-        <div class="mensagem-erro" *ngIf="erro">{{ erro }}</div>
+        @if (mensagem) {
+          <div class="mensagem-sucesso">{{ mensagem }}</div>
+        }
 
-        <!-- Botões de ação -->
+        @if (erro) {
+          <div class="mensagem-erro">{{ erro }}</div>
+        }
+
         <div class="modal-actions">
           <button type="button" class="btn-cancel" (click)="step = 'choose'">Voltar</button>
           <button type="submit" class="btn-submit" [disabled]="consumerForm.invalid">Cadastrar</button>
         </div>
       </form>
-    </ng-container>
+    }
   </div>
 </div>

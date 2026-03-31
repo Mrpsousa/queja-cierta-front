@@ -1,5 +1,4 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 type RankingMode = 'best' | 'worst';
 
@@ -25,11 +24,11 @@ interface CategoryRanking {
 
 @Component({
   selector: 'app-main-content',
-  imports: [CommonModule],
   templateUrl: './main-content.html',
   styleUrl: './main-content.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainContent {
+export class MainContentComponent {
   rankingMode: RankingMode = 'best';
   selectedCategory = 'ecommerce';
 
