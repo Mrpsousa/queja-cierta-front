@@ -1,43 +1,42 @@
-import { Component } from '@angular/core';
-import { SecondBarCard } from './second-bar-card/second-bar-card';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
+import { HeroActionCardComponent } from './hero-action-card/hero-action-card';
 
 @Component({
-  selector: 'app-second-bar',
-  imports: [SecondBarCard],
-  templateUrl: './second-bar.html',
-  styleUrl: './second-bar.css',
+  selector: 'app-hero-section',
+  imports: [HeroActionCardComponent],
+  templateUrl: './hero-section.html',
+  styleUrl: './hero-section.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SecondBar {
+export class HeroSectionComponent {
   buttons = [
     {
       icon: 'campaign',
       text: 'Haz una reclamación',
-      action: () => this.fazerReclamacao()
+      action: () => this.fazerReclamacao(),
     },
     {
       icon: 'folder_open',
       text: 'Mis Reclamaciones',
-      action: () => this.minhasReclamacoes()
+      action: () => this.minhasReclamacoes(),
     },
     {
       icon: 'computer',
       text: 'Reclame Aquí para empresas',
-      action: () => this.reclameAquiEmpresas()
-    }
+      action: () => this.reclameAquiEmpresas(),
+    },
   ];
 
   fazerReclamacao() {
     alert('Funcionalidade de "Fazer uma reclamação" será implementada em breve!');
-    // Aqui você pode chamar um serviço, abrir modal, redirecionar, etc.
   }
 
   minhasReclamacoes() {
     alert('Funcionalidade de "Minhas Reclamações" será implementada em breve!');
-    // Exemplo: redirecionar para /minhas-reclamacoes
   }
 
   reclameAquiEmpresas() {
     alert('Funcionalidade de "Reclame Aqui para empresas" será implementada em breve!');
-    // Exemplo: redirecionar para /reclame-aqui
   }
 }

@@ -21,9 +21,11 @@
         [value]="selectedCategory"
         (change)="onCategoryChange($event)"
       >
-        <option *ngFor="let category of categories" [value]="category.value">
-          {{ category.label }}
-        </option>
+        @for (category of categories; track category.value) {
+          <option [value]="category.value">
+            {{ category.label }}
+          </option>
+        }
       </select>
 
       <div class="main-content__actions">
@@ -50,34 +52,33 @@
       <span>Referente a los últimos 6 años</span>
 
       <ol class="ranking-list">
-        <li class="ranking-item" *ngFor="let company of displayedCompanies; let i = index">
+        @for (company of displayedCompanies; track company.name; let i = $index) {
+          <li class="ranking-item">
           <a
             [href]="company.link"
-            class="ranking-card"
-            [class.ranking-card--negative]="rankingMode === 'worst'"
+            [class]="rankingMode === 'worst' ? 'ranking-card ranking-card--negative' : 'ranking-card'"
           >
             <span class="ranking-position">{{ formatPosition(i) }}</span>
-            <span class="ranking-logo" [ngClass]="company.logoClass">
+            <span [class]="'ranking-logo ' + company.logoClass">
               {{ company.logoText }}
             </span>
             <div class="ranking-company">
               <div class="ranking-company-top">
                 <strong>{{ company.name }}</strong>
-                <span
-                  *ngIf="company.verified; else warningBadge"
-                  class="ranking-verified"
-                  aria-label="Empresa verificada"
-                >
-                  ✓
-                </span>
-                <ng-template #warningBadge>
+                @if (company.verified) {
+                  <span
+                    class="ranking-verified"
+                    aria-label="Empresa verificada"
+                  >
+                    ✓
+                  </span>
+                } @else {
                   <span class="ranking-warning" aria-label="Empresa con alertas">!</span>
-                </ng-template>
+                }
               </div>
               <div class="ranking-company-score">
                 <span
-                  class="ranking-indicator"
-                  [class.ranking-indicator--negative]="rankingMode === 'worst'"
+                  [class]="rankingMode === 'worst' ? 'ranking-indicator ranking-indicator--negative' : 'ranking-indicator'"
                   aria-hidden="true"
                 >
                   {{ rankingMode === 'worst' ? '☹' : '' }}
@@ -87,7 +88,8 @@
               <span class="ranking-company-meta">{{ company.status }}</span>
             </div>
           </a>
-        </li>
+          </li>
+        }
       </ol>
 
       <a href="#" class="main-content__link">Ver todas las empresas</a>

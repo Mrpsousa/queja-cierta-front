@@ -26,7 +26,6 @@
   margin-bottom: 3px;
 }
 
-/* Responsividade */
 @media (max-width: 600px) {
   .btn-card {
     width: 100%;

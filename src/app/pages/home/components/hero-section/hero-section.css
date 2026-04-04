@@ -1,13 +1,11 @@
-.second-bar-section {
+.hero-section {
   background: linear-gradient(to bottom, #fff8e1 0%, #fffde7 100%);
   color: #1a1a1a;
   font-family: Arial, sans-serif;
-  /* min-height: 500px; */
   position: relative;
   overflow: hidden;
 }
 
-/* Faixa amarela superior */
 .top-bar {
   background: #fed531;
   height: 40px;
@@ -31,7 +29,6 @@
   color: #e6c000;
 }
 
-/* Conteúdo principal */
 .main-content {
   display: flex;
   align-items: flex-start;
@@ -62,7 +59,6 @@
   line-height: 1.5;
 }
 
-/* Botões de ação (mais compactos, ícones menores) */
 .action-buttons {
   display: flex;
   justify-content: center;
@@ -100,27 +96,24 @@
   cursor: default;
 }
 
-/* Ícones nos botões - REDUZIDO */
 .icon {
-  font-size: 28px;           /* ← Ícones menores, como na imagem base */
+  font-size: 28px;
   display: block;
-  margin-bottom: 3px;        /* ← menos espaço abaixo do ícone */
+  margin-bottom: 3px;
 }
 
-/* Ícones laterais (quadrados amarelos com carinha) */
 .logo {
-  width: 385px;                     /* largura fixa ou % se preferir */
-  aspect-ratio: 385 / 285;          /* mantém a proporção original da imagem (385×285) */
+  width: 385px;
+  aspect-ratio: 385 / 285;
   opacity: 0.95;
   z-index: 1;
   background-image: url('/icone-01.png');
-  background-size: contain;         /* ou 'cover' se quiser preencher todo o espaço */
+  background-size: contain;
   background-repeat: no-repeat;
-  background-position: center center; /* centraliza horizontal e verticalmente */
-  background-color: transparent;    /* opcional: fundo transparente */
+  background-position: center center;
+  background-color: transparent;
 }
 
-/* Responsividade */
 @media (max-width: 1200px) {
   .main-content {
     padding: 20px 40px 30px;
@@ -171,7 +164,7 @@
   }
 
   .icon {
-    font-size: 24px;         /* ainda menor em mobile */
+    font-size: 24px;
     margin-bottom: 4px;
   }
 }

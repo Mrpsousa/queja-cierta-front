@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SecondBarCard } from './second-bar-card';
+import { HeroActionCardComponent } from './hero-action-card';
 
-describe('SecondBarCard', () => {
-  let component: SecondBarCard;
-  let fixture: ComponentFixture<SecondBarCard>;
+describe('HeroActionCardComponent', () => {
+  let component: HeroActionCardComponent;
+  let fixture: ComponentFixture<HeroActionCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SecondBarCard]
+      imports: [HeroActionCardComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SecondBarCard);
+    fixture = TestBed.createComponent(HeroActionCardComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
