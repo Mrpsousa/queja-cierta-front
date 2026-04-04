@@ -1,0 +1,9 @@
+.ad-banner {
+  width: auto;
+  margin: 24px auto;
+  min-height: 180px;
+  background: #f7f3df;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+}

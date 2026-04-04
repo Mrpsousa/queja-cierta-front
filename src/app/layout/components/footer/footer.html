@@ -1,0 +1,64 @@
+<footer class="footer">
+  <div class="footer__container page-shell">
+    @for (group of groups; track group.title) {
+      <section class="footer__group">
+        <h2>{{ group.title }}</h2>
+
+        @if (group.primaryAction) {
+          <a
+            [href]="group.primaryAction.href"
+            [class]="group.primaryActionVariant === 'outline' ? 'footer__primary-action footer__primary-action--outline' : 'footer__primary-action'"
+          >
+            {{ group.primaryAction.label }}
+          </a>
+        }
+
+        <ul class="footer__links">
+          @for (link of group.links; track link.label) {
+            <li><a [href]="link.href">{{ link.label }}</a></li>
+          }
+        </ul>
+
+        @if (group.noteText && group.noteLink) {
+          <p class="footer__note">
+            {{ group.noteText }}
+            <a [href]="group.noteLink.href">{{ group.noteLink.label }}</a>
+          </p>
+        }
+
+        @if (group.showStoreBadges) {
+          <div class="footer__stores" aria-label="Tiendas de aplicaciones">
+            <a href="#" class="store-badge">
+              <span>Disponible en</span>
+              <strong>Google Play</strong>
+            </a>
+            <a href="#" class="store-badge">
+              <span>Descargar en</span>
+              <strong>App Store</strong>
+            </a>
+          </div>
+        }
+      </section>
+    }
+  </div>
+
+  <div class="footer__bottom">
+    <div class="footer__bottom-container page-shell">
+      <nav class="footer__social" aria-label="Redes sociales">
+        @for (socialLink of socialLinks; track socialLink.label) {
+          <a [href]="socialLink.href" [attr.aria-label]="socialLink.label">{{ socialLink.label }}</a>
+        }
+      </nav>
+
+      <a href="#" class="footer__brand" aria-label="Queja Cierta">
+        <img src="logo_square_mid_size.png" alt="Queja Cierta" />
+      </a>
+
+      <nav class="footer__legal" aria-label="Documentos legales">
+        @for (legalLink of legalLinks; track legalLink.label) {
+          <a [href]="legalLink.href">{{ legalLink.label }}</a>
+        }
+      </nav>
+    </div>
+  </div>
+</footer>

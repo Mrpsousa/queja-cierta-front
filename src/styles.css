@@ -1,8 +1,87 @@
-/* You can add global styles to this file, and also import other style files */
-/* Global styles for the application */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
+:root {
+  --color-bg-page: #f9f9f9;
+  --color-bg-surface: #ffffff;
+  --color-bg-muted: #f1f3f5;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #4b5a66;
+  --color-text-muted: #58708d;
+  --color-border: #d8dee4;
+  --color-accent: #fed531;
+  --color-accent-strong: #f5c000;
+  --color-link: #0068c9;
+  --color-success: #0c9c5f;
+  --color-danger: #c53737;
+
+  --shadow-sm: 0 4px 10px rgba(44, 62, 80, 0.08);
+  --shadow-md: 0 10px 24px rgba(44, 62, 80, 0.12);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-round: 999px;
+
+  --font-family-base: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-base);
+  color: var(--color-text-primary);
+  background: var(--color-bg-page);
+  line-height: 1.5;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(254, 213, 49, 0.45);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.page-shell {
+  width: min(1320px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+@media (max-width: 980px) {
+  .page-shell {
+    width: min(1320px, calc(100% - 20px));
+  }
 }

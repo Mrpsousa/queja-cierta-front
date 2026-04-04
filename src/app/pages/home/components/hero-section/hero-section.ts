@@ -2,6 +2,15 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { HeroActionCardComponent } from './hero-action-card/hero-action-card';
 
+type HeroActionId = 'claim' | 'my-claims' | 'business';
+
+interface HeroActionCard {
+  id: HeroActionId;
+  icon: string;
+  text: string;
+  ariaLabel: string;
+}
+
 @Component({
   selector: 'app-hero-section',
   imports: [HeroActionCardComponent],
@@ -10,33 +19,51 @@ import { HeroActionCardComponent } from './hero-action-card/hero-action-card';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroSectionComponent {
-  buttons = [
+  readonly quickLinks = [
+    'Para ti',
+    'Mejores empresas',
+    'Detector de Sitio Confiable',
+    'Comparar',
+    'Descuentos',
+    'Para empresas',
+  ];
+
+  readonly actionCards: HeroActionCard[] = [
     {
+      id: 'claim',
       icon: 'campaign',
-      text: 'Haz una reclamación',
-      action: () => this.fazerReclamacao(),
+      text: 'Haz una reclamacion',
+      ariaLabel: 'Iniciar una reclamacion',
     },
     {
+      id: 'my-claims',
       icon: 'folder_open',
-      text: 'Mis Reclamaciones',
-      action: () => this.minhasReclamacoes(),
+      text: 'Mis reclamaciones',
+      ariaLabel: 'Ir a mis reclamaciones',
     },
     {
+      id: 'business',
       icon: 'computer',
-      text: 'Reclame Aquí para empresas',
-      action: () => this.reclameAquiEmpresas(),
+      text: 'Queja Cierta para empresas',
+      ariaLabel: 'Conocer soluciones para empresas',
     },
   ];
 
-  fazerReclamacao() {
-    alert('Funcionalidade de "Fazer uma reclamação" será implementada em breve!');
+  onQuickLinkClick(event: Event): void {
+    event.preventDefault();
   }
 
-  minhasReclamacoes() {
-    alert('Funcionalidade de "Minhas Reclamações" será implementada em breve!');
-  }
+  onActionClick(action: HeroActionId): void {
+    if (action === 'claim') {
+      window.alert('Funcionalidad de reclamacion disponible pronto.');
+      return;
+    }
 
-  reclameAquiEmpresas() {
-    alert('Funcionalidade de "Reclame Aqui para empresas" será implementada em breve!');
+    if (action === 'my-claims') {
+      window.alert('Area de reclamaciones en desarrollo.');
+      return;
+    }
+
+    window.alert('Portal para empresas disponible pronto.');
   }
 }

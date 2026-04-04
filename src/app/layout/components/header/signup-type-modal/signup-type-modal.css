@@ -1,88 +1,242 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.58);
 }
 
 .modal-content {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 500px;
   position: relative;
-  max-height: 90vh;
+  width: min(760px, 100%);
+  max-height: 92vh;
   overflow-y: auto;
+  border-radius: 12px;
+  border: 1px solid #d8dee4;
+  background: #fff;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.26);
+  padding: 28px;
 }
 
 .btn-close {
   position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 1.8rem;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #5a6976;
+  font-size: 1.5rem;
+  line-height: 1;
   cursor: pointer;
-  color: #666;
 }
 
-h2 { text-align: center; margin-bottom: 1.5rem; }
+.btn-close:hover {
+  background: #f3f5f7;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: #1a1a1a;
+  font-size: clamp(1.4rem, 2.8vw, 1.8rem);
+  text-align: center;
+}
+
+.modal-header p {
+  margin: 8px 0 0;
+  color: #4b5a66;
+  font-size: 0.98rem;
+  text-align: center;
+}
 
 .profile-options {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  margin: 2rem 0;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
 }
 
 .profile-card {
-  flex: 1;
-  text-align: center;
-  padding: 2rem 1rem;
-  border: 2px solid #ddd;
+  border: 1px solid #d8dee4;
   border-radius: 12px;
+  background: #fff;
+  padding: 18px 16px;
+  text-align: center;
   cursor: pointer;
-  transition: all 0.25s;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .profile-card:hover {
-  border-color: #28a745;
-  transform: translateY(-8px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+  border-color: #fed531;
+  box-shadow: 0 10px 22px rgba(44, 62, 80, 0.12);
 }
 
-.consumidor .icon { font-size: 4rem; color: #28a745; }
-.empresa .icon { font-size: 4rem; color: #007bff; }
+.profile-icon {
+  margin: 0;
+  font-size: 2.6rem;
+  line-height: 1;
+}
+
+.profile-card h3 {
+  margin: 10px 0 0;
+  font-size: 1.15rem;
+  color: #1a1a1a;
+}
+
+.profile-card p {
+  margin: 10px 0 0;
+  color: #4b5a66;
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
 
 .btn-primary {
-  background: #28a745;
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  margin-top: 1rem;
+  margin-top: 14px;
   width: 100%;
+  min-height: 42px;
+  border: 1px solid #fed531;
+  border-radius: 8px;
+  background: #fed531;
+  color: #1a1a1a;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #f5c000;
+}
+
+.btn-primary--secondary {
+  background: #fff;
+}
+
+.btn-primary--secondary:hover {
+  background: #fff7d8;
+}
+
+form {
+  margin-top: 14px;
+}
+
+.form-group {
+  margin-top: 12px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #1a1a1a;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid #c8d0d8;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #fff;
+  color: #1a1a1a;
+}
+
+.form-group input:focus {
+  border-color: #fed531;
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(254, 213, 49, 0.24);
+}
+
+.form-group input[aria-invalid='true'] {
+  border-color: #d64545;
+}
+
+.error {
+  margin: 6px 0 0;
+  color: #d64545;
+  font-size: 0.82rem;
 }
 
 .modal-actions {
+  margin-top: 18px;
   display: flex;
-  justify-content: space-between;
-  margin-top: 1.5rem;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
-.btn-cancel { background: #6c757d; color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 8px; cursor: pointer; }
-.btn-submit { background: #28a745; color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 8px; cursor: pointer; }
+.btn-cancel,
+.btn-submit {
+  min-height: 42px;
+  border-radius: 8px;
+  padding: 0 16px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+}
 
-.error { color: #dc3545; font-size: 0.9rem; margin-top: 0.3rem; }
-.mensagem-sucesso { color: #28a745; text-align: center; margin: 1rem 0; font-weight: bold; }
-.mensagem-erro { color: #dc3545; text-align: center; margin: 1rem 0; }
+.btn-cancel {
+  border: 1px solid #d8dee4;
+  background: #fff;
+  color: #1a1a1a;
+}
 
-.form-group { margin-bottom: 1.2rem; }
-label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
-input { width: 100%; padding: 0.7rem; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; }
+.btn-cancel:hover {
+  background: #f3f5f7;
+}
+
+.btn-submit {
+  border: 1px solid #fed531;
+  background: #fed531;
+  color: #1a1a1a;
+}
+
+.btn-submit:hover {
+  background: #f5c000;
+}
+
+.btn-submit:disabled {
+  opacity: 0.56;
+  cursor: not-allowed;
+}
+
+.feedback {
+  margin: 12px 0 0;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.feedback--success {
+  color: #0d8c58;
+}
+
+.feedback--error {
+  color: #d64545;
+}
+
+@media (max-width: 760px) {
+  .modal-overlay {
+    padding: 12px;
+  }
+
+  .modal-content {
+    padding: 20px;
+  }
+
+  .profile-options {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .btn-cancel,
+  .btn-submit {
+    width: 100%;
+  }
+}
