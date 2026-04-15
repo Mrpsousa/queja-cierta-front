@@ -9,6 +9,7 @@ interface BusinessSolutionCard {
 
 @Component({
   selector: 'app-business-solutions-section',
+  standalone: true,
   templateUrl: './business-solutions-section.html',
   styleUrl: './business-solutions-section.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

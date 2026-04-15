@@ -24,6 +24,7 @@ interface CategoryRanking {
 
 @Component({
   selector: 'app-main-content',
+  standalone: true,
   templateUrl: './main-content.html',
   styleUrl: './main-content.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

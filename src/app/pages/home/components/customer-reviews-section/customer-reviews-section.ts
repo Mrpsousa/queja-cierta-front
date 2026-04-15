@@ -14,6 +14,7 @@ interface CompanyReview {
 
 @Component({
   selector: 'app-customer-reviews-section',
+  standalone: true,
   templateUrl: './customer-reviews-section.html',
   styleUrl: './customer-reviews-section.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
