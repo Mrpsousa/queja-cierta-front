@@ -1,0 +1,18 @@
+<section class="segments-grid">
+  <app-segments-controls [viewMode]="viewMode()" (expandAll)="onExpandAll($event)" (viewModeChange)="onViewMode($event)"></app-segments-controls>
+
+  <div class="segments-grid__wrap" [class.list-view]="viewMode() === 'list'">
+    @for (column of renderedColumns(); track $index) {
+      <div class="segments-grid__column">
+        @for (segment of column; track segment.title) {
+          <app-segment-card
+            [title]="segment.title"
+            [count]="segment.count"
+            [items]="segment.items"
+            [expandedState]="expandAll()"
+          ></app-segment-card>
+        }
+      </div>
+    }
+  </div>
+</section>

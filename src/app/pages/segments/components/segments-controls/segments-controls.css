@@ -1,0 +1,38 @@
+.segments-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto 18px auto;
+}
+
+.segments-controls .btn--link {
+  background: transparent;
+  border: 0;
+  color: var(--color-text-primary);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.segments-controls .view-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.segments-controls .btn--icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-round);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-surface);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.segments-controls .view-label {
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}

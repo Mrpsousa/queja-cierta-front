@@ -1,0 +1,12 @@
+<div class="segments-controls">
+  <button class="btn--link" (click)="toggleExpandAll()">
+    {{ expandedAll ? 'Contraer todos' : '+ Expandir todos' }}
+  </button>
+
+  <div class="view-toggle">
+    <button class="btn--icon" (click)="toggleView()" aria-label="Alternar vista">
+      <span class="icon">≡</span>
+    </button>
+    <span class="view-label">{{ viewMode === 'grid' ? 'Bloques' : 'Lista' }}</span>
+  </div>
+</div>
