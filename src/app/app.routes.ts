@@ -6,4 +6,11 @@ export const routes: Routes = [
         loadComponent: () =>
             import('./pages/home/home').then((module) => module.HomeComponent),
     },
+    {
+        path: 'segments',
+        loadComponent: () =>
+            import('./pages/segments/segments').then(
+                (module) => module.Segments
+            ),
+    }
 ];

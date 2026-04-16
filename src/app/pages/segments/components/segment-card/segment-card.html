@@ -1,0 +1,21 @@
+<article class="segment-card" [attr.aria-expanded]="expanded">
+  <header class="segment-card__header" (click)="toggle()" role="button" tabindex="0">
+    <div class="segment-card__meta">
+      <span class="segment-card__icon" aria-hidden="true">📦</span>
+      <div class="segment-card__labels">
+        <div class="segment-card__title" [attr.title]="title">{{ title }}</div>
+        <div class="segment-card__count">{{ count }} categorías</div>
+      </div>
+    </div>
+
+    <button class="segment-card__toggle" aria-label="Expandir" type="button">{{ expanded ? '−' : '+' }}</button>
+  </header>
+
+  <div class="segment-card__body" *ngIf="expanded">
+    <ul class="segment-card__list">
+      <li *ngFor="let it of items">
+        <a [href]="it.href || '#'">{{ it.title }}</a>
+      </li>
+    </ul>
+  </div>
+</article>
