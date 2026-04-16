@@ -1,0 +1,33 @@
+<header class="site-header">
+  <div class="site-header__container page-shell">
+    <a class="brand" routerLink="/" aria-label="Ir a la pagina principal de Queja Cierta">
+      <span class="brand__text">Queja<span class="brand__highlight">Cierta</span></span>
+    </a>
+
+    <form class="site-search" role="search" (submit)="onSearchSubmit($event)">
+      <label for="header-search" class="sr-only">Buscar</label>
+      <input id="header-search" type="search" placeholder="Que estas buscando?" />
+      <button type="submit" aria-label="Buscar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </button>
+    </form>
+
+    <div class="auth-actions" role="group" aria-label="Acciones de usuario">
+      <button type="button" class="btn btn--ghost">Iniciar sesion</button>
+      <button type="button" class="btn btn--solid" (click)="onCreateAccountClick()">Crear cuenta</button>
+    </div>
+  </div>
+
+  <nav class="hero-shortcuts" aria-label="Enlaces rapidos">
+    <ul class="page-shell">
+      @for (quickLink of quickLinks; track quickLink) {
+        <li>
+          <button type="button" class="hero-shortcuts__link" (click)="onQuickLinkClick($event)">{{ quickLink }}</button>
+        </li>
+      }
+    </ul>
+  </nav>
+</header>

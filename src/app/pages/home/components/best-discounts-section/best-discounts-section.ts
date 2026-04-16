@@ -10,6 +10,7 @@ interface DiscountCard {
 
 @Component({
   selector: 'app-best-discounts-section',
+  standalone: true,
   templateUrl: './best-discounts-section.html',
   styleUrl: './best-discounts-section.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

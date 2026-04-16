@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
+import { NavbarComponent } from '../../layout/components/navbar';
 import { SignupTypeModalComponent } from '../../layout/components/header/signup-type-modal/signup-type-modal';
 import { MainContentComponent } from './components/main-content/main-content';
 import { HeroSectionComponent } from './components/hero-section/hero-section';
@@ -14,7 +15,9 @@ type FeedbackType = 'success' | 'error' | null;
 
 @Component({
   selector: 'app-home',
+  standalone: true,
   imports: [
+    NavbarComponent,
     SignupTypeModalComponent,
     HeroSectionComponent,
     MainContentComponent,
@@ -41,10 +44,6 @@ export class HomeComponent {
 
   closeModal(): void {
     this.showModal = false;
-  }
-
-  onSearchSubmit(event: Event): void {
-    event.preventDefault();
   }
 
   onCreateUser(data: CreateUserRequest): void {

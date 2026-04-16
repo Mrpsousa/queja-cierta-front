@@ -8,6 +8,7 @@ type SignupStep = 'choose' | 'consumer';
 @Component({
   selector: 'app-signup-type-modal',
   imports: [ReactiveFormsModule],
+  standalone: true,
   templateUrl: './signup-type-modal.html',
   styleUrl: './signup-type-modal.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

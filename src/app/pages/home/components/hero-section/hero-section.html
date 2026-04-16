@@ -1,14 +1,4 @@
 <section class="hero-section" aria-label="Presentacion principal">
-  <nav class="hero-shortcuts" aria-label="Enlaces rapidos">
-    <ul class="page-shell">
-      @for (quickLink of quickLinks; track quickLink) {
-        <li>
-          <a href="#" (click)="onQuickLinkClick($event)">{{ quickLink }}</a>
-        </li>
-      }
-    </ul>
-  </nav>
-
   <div class="hero-section__body page-shell">
     <div class="hero-section__logo" aria-hidden="true"></div>
 

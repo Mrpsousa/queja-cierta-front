@@ -14,20 +14,12 @@ interface HeroActionCard {
 @Component({
   selector: 'app-hero-section',
   imports: [HeroActionCardComponent],
+  standalone: true,
   templateUrl: './hero-section.html',
   styleUrl: './hero-section.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroSectionComponent {
-  readonly quickLinks = [
-    'Para ti',
-    'Mejores empresas',
-    'Detector de Sitio Confiable',
-    'Comparar',
-    'Descuentos',
-    'Para empresas',
-  ];
-
   readonly actionCards: HeroActionCard[] = [
     {
       id: 'claim',
@@ -48,10 +40,6 @@ export class HeroSectionComponent {
       ariaLabel: 'Conocer soluciones para empresas',
     },
   ];
-
-  onQuickLinkClick(event: Event): void {
-    event.preventDefault();
-  }
 
   onActionClick(action: HeroActionId): void {
     if (action === 'claim') {
