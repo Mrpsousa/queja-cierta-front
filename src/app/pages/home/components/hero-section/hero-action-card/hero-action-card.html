@@ -1,4 +1,9 @@
-<button class="btn-card" (click)="onClick()">
-  <span>{{ text() }}</span>
-  <span class="material-icons icon">{{ icon() }}</span>
+<button
+  type="button"
+  class="hero-action-card"
+  [attr.aria-label]="ariaLabel() || text()"
+  (click)="onClick()"
+>
+  <span class="hero-action-card__text">{{ text() }}</span>
+  <span class="material-icons hero-action-card__icon" aria-hidden="true">{{ icon() }}</span>
 </button>

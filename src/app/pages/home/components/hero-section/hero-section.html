@@ -1,33 +1,33 @@
-<section class="hero-section">
-  <nav class="top-bar">
-    <span>Para ti</span>
-    <span>Mejores empresas</span>
-    <span>Detector de Sitio Confiable</span>
-    <span>Comparar</span>
-    <span>Descuentos</span>
-    <span>Para empresas</span>
+<section class="hero-section" aria-label="Presentacion principal">
+  <nav class="hero-shortcuts" aria-label="Enlaces rapidos">
+    <ul class="page-shell">
+      @for (quickLink of quickLinks; track quickLink) {
+        <li>
+          <a href="#" (click)="onQuickLinkClick($event)">{{ quickLink }}</a>
+        </li>
+      }
+    </ul>
   </nav>
 
-  <div class="main-content">
-    <div class="logo"></div>
+  <div class="hero-section__body page-shell">
+    <div class="hero-section__logo" aria-hidden="true"></div>
 
-    <div class="center-text">
-      <h1>¡QuejaCierta te acerca a las marcas que tienen la confianza del consumidor!</h1>
-      <p>
-        Compra de forma más segura, investigando empresas y buscando una solución para cualquier problema.
-      </p>
+    <div class="hero-section__content">
+      <h1>Queja Cierta te acerca a marcas con confianza del consumidor</h1>
+      <p>Compra de forma mas segura, investigando empresas y buscando soluciones para cada problema.</p>
 
-      <div class="action-buttons">
-        @for (button of buttons; track button.text) {
-          <app-hero-action-card 
-            [icon]="button.icon" 
-            [text]="button.text"
-            (cardClick)="button.action()">
-          </app-hero-action-card>
+      <div class="hero-section__actions">
+        @for (actionCard of actionCards; track actionCard.id) {
+          <app-hero-action-card
+            [icon]="actionCard.icon"
+            [text]="actionCard.text"
+            [ariaLabel]="actionCard.ariaLabel"
+            (cardClick)="onActionClick(actionCard.id)"
+          ></app-hero-action-card>
         }
       </div>
     </div>
 
-    <div class="logo"></div>
+    <div class="hero-section__logo" aria-hidden="true"></div>
   </div>
 </section>

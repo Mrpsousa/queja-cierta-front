@@ -1,110 +1,130 @@
 <div class="modal-overlay" (click)="onClose()">
-  <div class="modal-content" (click)="$event.stopPropagation()">
-    <button class="btn-close" (click)="onClose()">×</button>
+  <section
+    class="modal-content"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="signup-modal-title"
+    (click)="$event.stopPropagation()"
+  >
+    <button type="button" class="btn-close" aria-label="Cerrar modal" (click)="onClose()">×</button>
 
     @if (step === 'choose') {
-      <h2>Como você quer se cadastrar?</h2>
-      <p>Para começar, escolha o seu tipo de perfil:</p>
+      <header class="modal-header">
+        <h2 id="signup-modal-title">Como quieres registrarte?</h2>
+        <p>Para comenzar, elige el tipo de perfil.</p>
+      </header>
 
-      <div class="profile-options">
-        <div class="profile-card consumidor" (click)="cadastrarconsumer()">
-          <div class="icon">👤</div>
+      <div class="profile-options" role="list">
+        <article class="profile-card consumer" role="listitem" (click)="selectConsumerSignup()">
+          <p class="profile-icon" aria-hidden="true">👤</p>
           <h3>Consumidor</h3>
-          <p>Reclame e avalie empresas para ajudar outros consumidores</p>
-          <button class="btn-primary">Cadastrar como consumidor</button>
-        </div>
+          <p>Reclama y evalua empresas para ayudar a otros consumidores.</p>
+          <button type="button" class="btn-primary">Registrarme como consumidor</button>
+        </article>
 
-        <div class="profile-card empresa" (click)="cadastrarEmpresa()">
-          <div class="icon">🏪</div>
+        <article class="profile-card company" role="listitem" (click)="selectCompanySignup()">
+          <p class="profile-icon" aria-hidden="true">🏪</p>
           <h3>Empresa</h3>
-          <p>Fortaleça a confiança na sua marca e responda reclamações</p>
-          <button class="btn-primary">Cadastrar como empresa</button>
-        </div>
+          <p>Fortalece la confianza en tu marca y responde reclamaciones.</p>
+          <button type="button" class="btn-primary btn-primary--secondary">Registrarme como empresa</button>
+        </article>
       </div>
     }
 
     @if (step === 'consumer') {
-      <h2>Cadastro como Consumidor</h2>
+      <header class="modal-header">
+        <h2 id="signup-modal-title">Registro como consumidor</h2>
+      </header>
 
-      <form [formGroup]="consumerForm" (ngSubmit)="onSubmitconsumer($event)">
+      <form [formGroup]="consumerForm" (ngSubmit)="submitConsumer($event)" novalidate>
         <div class="form-group">
-          <label for="document_id">Documento (CPF ou outro)</label>
-          <input 
-            id="document_id" 
-            formControlName="document_id" 
-            type="text" 
-            placeholder="123.456.789-00 ou outro documento"
+          <label for="document_id">Documento (CPF u otro)</label>
+          <input
+            id="document_id"
+            formControlName="document_id"
+            type="text"
+            autocomplete="off"
+            [attr.aria-invalid]="consumerForm.controls.document_id.invalid && consumerForm.controls.document_id.touched"
+            placeholder="123.456.789-00"
           />
-          @if (consumerForm.get('document_id')?.invalid && consumerForm.get('document_id')?.touched) {
-            Documento é obrigatório
+          @if (consumerForm.controls.document_id.invalid && consumerForm.controls.document_id.touched) {
+            <p class="error" role="alert">Documento obligatorio.</p>
           }
         </div>
 
         <div class="form-group">
-          <label for="username">Nome de usuário</label>
-          <input 
-            id="username" 
-            formControlName="username" 
-            type="text" 
+          <label for="username">Nombre de usuario</label>
+          <input
+            id="username"
+            formControlName="username"
+            type="text"
+            autocomplete="username"
+            [attr.aria-invalid]="consumerForm.controls.username.invalid && consumerForm.controls.username.touched"
             placeholder="seu_usuario"
           />
-          @if (consumerForm.get('username')?.invalid && consumerForm.get('username')?.touched) {
-            Nome de usuário obrigatório (mínimo 4 caracteres)
+          @if (consumerForm.controls.username.invalid && consumerForm.controls.username.touched) {
+            <p class="error" role="alert">Minimo 4 caracteres.</p>
           }
         </div>
 
         <div class="form-group">
-          <label for="email">E-mail</label>
-          <input 
-            id="email" 
-            formControlName="email" 
-            type="email" 
-            placeholder="seu@email.com"
+          <label for="email">Correo electronico</label>
+          <input
+            id="email"
+            formControlName="email"
+            type="email"
+            autocomplete="email"
+            [attr.aria-invalid]="consumerForm.controls.email.invalid && consumerForm.controls.email.touched"
+            placeholder="nombre@correo.com"
           />
-          @if (consumerForm.get('email')?.invalid && consumerForm.get('email')?.touched) {
-            E-mail inválido
+          @if (consumerForm.controls.email.invalid && consumerForm.controls.email.touched) {
+            <p class="error" role="alert">Correo electronico invalido.</p>
           }
         </div>
 
         <div class="form-group">
-          <label for="full_name">Nome completo</label>
-          <input 
-            id="full_name" 
-            formControlName="full_name" 
-            type="text" 
-            placeholder="Seu Nome Completo"
+          <label for="full_name">Nombre completo</label>
+          <input
+            id="full_name"
+            formControlName="full_name"
+            type="text"
+            autocomplete="name"
+            [attr.aria-invalid]="consumerForm.controls.full_name.invalid && consumerForm.controls.full_name.touched"
+            placeholder="Tu nombre completo"
           />
-          @if (consumerForm.get('full_name')?.invalid && consumerForm.get('full_name')?.touched) {
-            Nome completo obrigatório (mínimo 3 caracteres)
+          @if (consumerForm.controls.full_name.invalid && consumerForm.controls.full_name.touched) {
+            <p class="error" role="alert">Minimo 3 caracteres.</p>
           }
         </div>
 
         <div class="form-group">
-          <label for="password">Senha</label>
-          <input 
-            id="password" 
-            formControlName="password" 
-            type="password" 
-            placeholder="Mínimo 6 caracteres"
+          <label for="password">Contrasena</label>
+          <input
+            id="password"
+            formControlName="password"
+            type="password"
+            autocomplete="new-password"
+            [attr.aria-invalid]="consumerForm.controls.password.invalid && consumerForm.controls.password.touched"
+            placeholder="Minimo 6 caracteres"
           />
-          @if (consumerForm.get('password')?.invalid && consumerForm.get('password')?.touched) {
-            Senha obrigatória (mínimo 6 caracteres)
+          @if (consumerForm.controls.password.invalid && consumerForm.controls.password.touched) {
+            <p class="error" role="alert">Minimo 6 caracteres.</p>
           }
         </div>
-
-        @if (mensagem) {
-          <div class="mensagem-sucesso">{{ mensagem }}</div>
-        }
-
-        @if (erro) {
-          <div class="mensagem-erro">{{ erro }}</div>
-        }
 
         <div class="modal-actions">
-          <button type="button" class="btn-cancel" (click)="step = 'choose'">Voltar</button>
-          <button type="submit" class="btn-submit" [disabled]="consumerForm.invalid">Cadastrar</button>
+          <button type="button" class="btn-cancel" (click)="goBackToChoose()">Volver</button>
+          <button type="submit" class="btn-submit" [disabled]="consumerForm.invalid">Crear cuenta</button>
         </div>
       </form>
     }
-  </div>
+
+    @if (message) {
+      <p class="feedback feedback--success" role="status">{{ message }}</p>
+    }
+
+    @if (errorMessage) {
+      <p class="feedback feedback--error" role="alert">{{ errorMessage }}</p>
+    }
+  </section>
 </div>

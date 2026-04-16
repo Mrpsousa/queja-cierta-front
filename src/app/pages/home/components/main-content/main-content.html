@@ -1,34 +1,27 @@
-<section class="main-content">
-  <div class="main-content__container">
-    <div class="main-content__left">
-      <h2>Mejores empresas en Queja Cierta</h2>
+<section class="main-content" aria-labelledby="ranking-overview-title">
+  <div class="main-content__container page-shell">
+    <article class="main-content__left">
+      <h2 id="ranking-overview-title">Mejores empresas en Queja Cierta</h2>
 
       <p>
-        Mira cuáles son las empresas más confiables de cada categoría
-        de Queja Cierta. Explora nuestra página y toma
-        decisiones importantes con mayor seguridad.
+        Mira cuales son las empresas mas confiables de cada categoria. Explora nuestros rankings y toma
+        decisiones con mayor seguridad.
       </p>
 
-      <button type="button">Ver todas las categorías</button>
-    </div>
+      <button type="button" class="main-content__cta">Ver todas las categorias</button>
+    </article>
 
-    <div class="main-content__right">
-      <span>Selecciona una categoría:</span>
+    <aside class="main-content__right" aria-label="Ranking por categoria">
+      <div class="main-content__field">
+        <label for="category">Selecciona una categoria</label>
+        <select id="category" [value]="selectedCategory" (change)="onCategoryChange($event)">
+          @for (category of categories; track category.value) {
+            <option [value]="category.value">{{ category.label }}</option>
+          }
+        </select>
+      </div>
 
-      <select
-        name="category"
-        id="category"
-        [value]="selectedCategory"
-        (change)="onCategoryChange($event)"
-      >
-        @for (category of categories; track category.value) {
-          <option [value]="category.value">
-            {{ category.label }}
-          </option>
-        }
-      </select>
-
-      <div class="main-content__actions">
+      <div class="main-content__actions" role="group" aria-label="Tipo de ranking">
         <button
           type="button"
           [class.is-active]="rankingMode === 'best'"
@@ -39,7 +32,6 @@
         </button>
         <button
           type="button"
-          class="is-worst-button"
           [class.is-active]="rankingMode === 'worst'"
           [class.is-worst]="rankingMode === 'worst'"
           [attr.aria-pressed]="rankingMode === 'worst'"
@@ -49,50 +41,48 @@
         </button>
       </div>
 
-      <span>Referente a los últimos 6 años</span>
+      <p class="main-content__period">Referente a los ultimos 6 anos</p>
 
-      <ol class="ranking-list">
-        @for (company of displayedCompanies; track company.name; let i = $index) {
+      <ol class="ranking-list" aria-label="Empresas destacadas">
+        @for (company of displayedCompanies; track company.name; let index = $index) {
           <li class="ranking-item">
-          <a
-            [href]="company.link"
-            [class]="rankingMode === 'worst' ? 'ranking-card ranking-card--negative' : 'ranking-card'"
-          >
-            <span class="ranking-position">{{ formatPosition(i) }}</span>
-            <span [class]="'ranking-logo ' + company.logoClass">
-              {{ company.logoText }}
-            </span>
-            <div class="ranking-company">
-              <div class="ranking-company-top">
-                <strong>{{ company.name }}</strong>
-                @if (company.verified) {
+            <a
+              [href]="company.link"
+              [class]="rankingMode === 'worst' ? 'ranking-card ranking-card--negative' : 'ranking-card'"
+              [attr.aria-label]="company.name + ', puntaje ' + company.score + ' de 10'"
+            >
+              <span class="ranking-position">{{ formatPosition(index) }}</span>
+              <span [class]="'ranking-logo ' + company.logoClass">{{ company.logoText }}</span>
+
+              <div class="ranking-company">
+                <div class="ranking-company-top">
+                  <strong>{{ company.name }}</strong>
+
+                  @if (company.verified) {
+                    <span class="ranking-verified" aria-label="Empresa verificada">✓</span>
+                  } @else {
+                    <span class="ranking-warning" aria-label="Empresa con alertas">!</span>
+                  }
+                </div>
+
+                <div class="ranking-company-score">
                   <span
-                    class="ranking-verified"
-                    aria-label="Empresa verificada"
+                    [class]="rankingMode === 'worst' ? 'ranking-indicator ranking-indicator--negative' : 'ranking-indicator'"
+                    aria-hidden="true"
                   >
-                    ✓
+                    {{ rankingMode === 'worst' ? '☹' : '' }}
                   </span>
-                } @else {
-                  <span class="ranking-warning" aria-label="Empresa con alertas">!</span>
-                }
+                  <span class="ranking-score"><strong>{{ company.score }}</strong>/10</span>
+                </div>
+
+                <span class="ranking-company-meta">{{ company.status }}</span>
               </div>
-              <div class="ranking-company-score">
-                <span
-                  [class]="rankingMode === 'worst' ? 'ranking-indicator ranking-indicator--negative' : 'ranking-indicator'"
-                  aria-hidden="true"
-                >
-                  {{ rankingMode === 'worst' ? '☹' : '' }}
-                </span>
-                <span class="ranking-score"><strong>{{ company.score }}</strong> /10</span>
-              </div>
-              <span class="ranking-company-meta">{{ company.status }}</span>
-            </div>
-          </a>
+            </a>
           </li>
         }
       </ol>
 
       <a href="#" class="main-content__link">Ver todas las empresas</a>
-    </div>
+    </aside>
   </div>
 </section>

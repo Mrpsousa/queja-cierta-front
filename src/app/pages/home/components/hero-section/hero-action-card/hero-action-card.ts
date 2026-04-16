@@ -9,6 +9,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 export class HeroActionCardComponent {
   icon = input('campaign');
   text = input('');
+  ariaLabel = input('');
   cardClick = output<void>();
 
   onClick(): void {

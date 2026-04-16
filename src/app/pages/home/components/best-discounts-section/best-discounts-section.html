@@ -1,0 +1,58 @@
+<section class="best-discounts-section page-shell" aria-labelledby="discounts-title">
+  <div class="hero-row">
+    <header class="hero-content">
+      <h2 id="discounts-title">Encuentra los mejores descuentos</h2>
+      <p>Compra con descuento y seguridad en empresas confiables.</p>
+      <button type="button" class="see-all-button">Ver todos los descuentos</button>
+    </header>
+
+    <figure class="hero-image-area">
+      <img
+        src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae?auto=format&fit=crop&w=900&q=80"
+        alt="Cupones de descuento"
+      />
+    </figure>
+  </div>
+
+  <section class="trusted-discounts" aria-label="Descuentos destacados">
+    <h3>Los mejores descuentos de empresas confiables</h3>
+
+    <div class="carousel-wrapper">
+      <button
+        type="button"
+        class="carousel-nav left"
+        aria-label="Volver descuentos"
+        (click)="scrollCarousel(-1)"
+        [disabled]="!canScrollLeft"
+      >
+        <span>&lt;</span>
+      </button>
+
+      <div class="carousel-track" #carouselTrack (scroll)="onTrackScroll()">
+        @for (card of cards; track card.companyName) {
+          <article class="discount-card">
+            <div class="company-logo">{{ card.logo }}</div>
+            <h4 class="company-name">{{ card.companyName }}</h4>
+            <p class="company-status">
+              <span [class]="'status-icon ' + card.statusClass" aria-hidden="true">
+                {{ card.statusClass === 'great' ? '✓' : card.statusClass === 'bad' ? '✕' : '●' }}
+              </span>
+              <span>{{ card.statusLabel }}</span>
+            </p>
+            <p class="discount-box">{{ card.availableDeals }}</p>
+          </article>
+        }
+      </div>
+
+      <button
+        type="button"
+        class="carousel-nav right"
+        aria-label="Avanzar descuentos"
+        (click)="scrollCarousel(1)"
+        [disabled]="!canScrollRight"
+      >
+        <span>&gt;</span>
+      </button>
+    </div>
+  </section>
+</section>

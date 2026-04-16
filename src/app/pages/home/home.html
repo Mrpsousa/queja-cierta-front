@@ -1,36 +1,52 @@
-<header class="header">
-  <div class="logo-container">
-    <span class="logo-text">Queja<span class="logo-highlight">Cierta</span></span>
-  </div>
+<header class="site-header">
+  <div class="site-header__container page-shell">
+    <a class="brand" href="#" aria-label="Pagina principal de Queja Cierta">
+      <span class="brand__text">Queja<span class="brand__highlight">Cierta</span></span>
+    </a>
 
-  <div class="search-bar-container">
-    <div class="search-wrapper">
-      <input 
-        type="text" 
-        placeholder="¿Qué estás buscando?" 
-        class="search-input" 
-      />
-      <button class="search-button">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fed531" stroke-width="2">
-          <circle cx="11" cy="11" r="8"/>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    <form class="site-search" role="search" (submit)="onSearchSubmit($event)">
+      <label for="header-search" class="sr-only">Buscar</label>
+      <input id="header-search" type="search" placeholder="Que estas buscando?" />
+      <button type="submit" aria-label="Buscar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
         </svg>
       </button>
-    </div>
-  </div>
+    </form>
 
-  <div class="auth-buttons">
-    <button class="btn btn-login">Iniciar sesión</button>
-    <button class="btn btn-register" (click)="openModal()">Crear cuenta</button>
+    <nav class="auth-actions" aria-label="Acceso de usuarios">
+      <button type="button" class="btn btn--ghost">Iniciar sesion</button>
+      <button type="button" class="btn btn--solid" (click)="openModal()">Crear cuenta</button>
+    </nav>
   </div>
 </header>
 
-@if (showModal) {
-  <app-signup-type-modal
-    (close)="closeModal()"
-    (submit)="onCreateUser($event)"
-  />
+@if (feedbackMessage) {
+  <p
+    class="home-feedback page-shell"
+    [class.home-feedback--error]="feedbackType === 'error'"
+    [class.home-feedback--success]="feedbackType === 'success'"
+    role="status"
+    aria-live="polite"
+  >
+    {{ feedbackMessage }}
+  </p>
 }
 
-<app-hero-section></app-hero-section>
-<app-main-content></app-main-content>
+<main id="main-content">
+  <app-hero-section></app-hero-section>
+  <app-main-content></app-main-content>
+  <app-add></app-add>
+  <app-best-discounts-section></app-best-discounts-section>
+  <app-add></app-add>
+  <app-customer-reviews-section></app-customer-reviews-section>
+  <app-add></app-add>
+  <app-business-solutions-section></app-business-solutions-section>
+</main>
+
+<app-footer></app-footer>
+
+@if (showModal) {
+  <app-signup-type-modal (close)="closeModal()" (submit)="onCreateUser($event)" />
+}

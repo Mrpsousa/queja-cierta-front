@@ -1,170 +1,107 @@
 .hero-section {
-  background: linear-gradient(to bottom, #fff8e1 0%, #fffde7 100%);
-  color: #1a1a1a;
-  font-family: Arial, sans-serif;
-  position: relative;
-  overflow: hidden;
+  background: linear-gradient(to bottom, #fff8e1 0%, #fffef4 100%);
 }
 
-.top-bar {
-  background: #fed531;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  padding: 0 50px;
-  justify-content: space-around;
-  font-size: 14px;
-  font-weight: 500;
-  color: #1a1a1a;
-  line-height: 1;
+.hero-shortcuts {
+  background: var(--color-accent);
   border-bottom: 1px solid #e6c000;
 }
 
-.top-bar span {
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.top-bar span:hover {
-  color: #e6c000;
-}
-
-.main-content {
+.hero-shortcuts ul {
+  margin: 0 auto;
+  width: min(1320px, calc(100% - 32px));
+  padding: 0;
+  min-height: 44px;
+  list-style: none;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: #f9f9f9;
-  width: 100%;
-}
-
-.center-text {
-  padding: 15px 0 10px 0;
-  text-align: center;
-  max-width: 880px;
-  z-index: 2;
-}
-
-.center-text h1 {
-  font-size: 24px;
-  margin-bottom: 8px;
-  line-height: 1.2;
-  color: #fed531;
-  font-weight: bold;
-}
-
-.center-text p {
-  font-size: 15px;
-  margin-bottom: 14px;
-  color: #444;
-  line-height: 1.5;
-}
-
-.action-buttons {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 40px;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
 }
 
-.btn-reclamar,
-.btn-minhas {
-  background: white;
-  color: #1a1a1a;
-  border: 3px solid #fed531;
-  border-radius: 12px;
-  padding: 20px 40px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s;
-  text-align: center;
-  min-width: 240px;
-  box-shadow: 0 6px 16px rgba(254, 213, 49, 0.15);
+.hero-shortcuts a {
+  text-decoration: none;
+  color: var(--color-text-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
-.btn-empresas {
-  background: white;
-  color: #fed531;
-  border: 3px solid #fed531;
-  border-radius: 12px;
-  padding: 20px 40px;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  min-width: 240px;
-  cursor: default;
+.hero-shortcuts a:hover {
+  text-decoration: underline;
 }
 
-.icon {
-  font-size: 28px;
-  display: block;
-  margin-bottom: 3px;
+.hero-section__body {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr) 260px;
+  align-items: center;
+  gap: 20px;
+  padding-top: 20px;
+  padding-bottom: 30px;
 }
 
-.logo {
-  width: 385px;
-  aspect-ratio: 385 / 285;
-  opacity: 0.95;
-  z-index: 1;
+.hero-section__logo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
   background-image: url('/icone-01.png');
-  background-size: contain;
   background-repeat: no-repeat;
-  background-position: center center;
-  background-color: transparent;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.9;
 }
 
-@media (max-width: 1200px) {
-  .main-content {
-    padding: 20px 40px 30px;
-  }
-
-  .center-text h1 {
-    font-size: 30px;
-  }
-
-  .action-buttons {
-    gap: 24px;
-  }
+.hero-section__content {
+  text-align: center;
 }
 
-@media (max-width: 992px) {
-  .main-content {
-    flex-direction: column;
-    padding: 20px 30px 20px;
+.hero-section__content h1 {
+  margin: 0;
+  color: #8f6e00;
+  font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+  line-height: 1.2;
+}
+
+.hero-section__content p {
+  margin: 10px auto 0;
+  max-width: 720px;
+  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+}
+
+.hero-section__actions {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 980px) {
+  .hero-shortcuts ul {
+    width: min(1320px, calc(100% - 20px));
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 0 4px;
   }
 
-  .logo-left, .logo-right {
+  .hero-shortcuts li {
+    white-space: nowrap;
+  }
+
+  .hero-section__body {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding-top: 18px;
+    padding-bottom: 24px;
+  }
+
+  .hero-section__logo {
     display: none;
   }
 
-  .center-text h1 {
-    font-size: 28px;
-  }
-
-  .action-buttons {
-    flex-direction: column;
-    gap: 20px;
-  }
-}
-
-@media (max-width: 600px) {
-  .center-text h1 {
-    font-size: 24px;
-  }
-
-  .center-text p {
-    font-size: 16px;
-  }
-
-  .btn-reclamar, .btn-minhas, .btn-empresas {
-    width: 100%;
-    padding: 16px;
-    font-size: 16px;
-  }
-
-  .icon {
-    font-size: 24px;
-    margin-bottom: 4px;
+  .hero-section__actions {
+    grid-template-columns: 1fr;
+    max-width: 100%;
   }
 }

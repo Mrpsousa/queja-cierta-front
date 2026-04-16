@@ -1,0 +1,61 @@
+<section class="customer-reviews-section" aria-labelledby="reviews-title">
+  <div class="customer-reviews-section__container page-shell">
+    <article class="customer-reviews-section__left">
+      <h2 id="reviews-title">Mira la opinion de quienes ya compraron</h2>
+
+      <p>Valoramos la voz del consumidor y garantizamos la veracidad de las opiniones.</p>
+      <p>Queja Cierta Reviews recopila opiniones reales y verificadas por consumidores.</p>
+
+      <p class="customer-reviews-section__trust">
+        <span class="trust-icon" aria-hidden="true">★</span>
+        <span>Evaluaciones reales auditadas por <strong>QCReviews ↗</strong></span>
+      </p>
+
+      <div class="customer-reviews-section__social-proof" aria-label="Prueba social de consumidores">
+        <div class="avatars" aria-hidden="true">
+          <span class="avatar">A</span>
+          <span class="avatar">M</span>
+          <span class="avatar">C</span>
+          <span class="avatar">R</span>
+          <span class="avatar">L</span>
+          <span class="avatar">S</span>
+        </div>
+
+        <div class="social-proof-text">
+          <strong>Recogimos +10 millones</strong>
+          <span>de opiniones de productos</span>
+        </div>
+      </div>
+    </article>
+
+    <ul class="customer-reviews-section__right" aria-label="Empresas evaluadas">
+      @for (company of companies; track company.name) {
+        <li>
+          <article class="review-card">
+            <header class="review-card__header">
+              <span [class]="'company-logo ' + company.logoClass">{{ company.logoText }}</span>
+
+              <div class="review-card__identity">
+                <h3>{{ company.name }}</h3>
+                <p class="company-reputation">
+                  <span class="reputation-icon" aria-hidden="true">{{ getReputationIcon(company.reputation) }}</span>
+                  <span>{{ getReputationLabel(company.reputation) }}</span>
+                </p>
+              </div>
+            </header>
+
+            <p class="review-card__meta">
+              <span class="score">{{ company.score.toFixed(1) }}</span>
+              <span class="stars" [attr.aria-label]="company.score + ' de 5 estrellas'">
+                {{ getStars(company.score) }}
+              </span>
+              <span class="reviews">{{ company.reviewsText }}</span>
+            </p>
+
+            <a class="review-card__link" [href]="company.link">Ver todas las opiniones</a>
+          </article>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
