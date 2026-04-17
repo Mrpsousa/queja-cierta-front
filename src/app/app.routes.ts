@@ -12,5 +12,12 @@ export const routes: Routes = [
             import('./pages/segments/segments').then(
                 (module) => module.Segments
             ),
+    },
+    {
+        path: 'subsegments',
+        loadComponent: () =>
+            import('./pages/segments/subsegments/subsegments').then(
+                (module) => module.Subsegments
+            ),
     }
 ];
