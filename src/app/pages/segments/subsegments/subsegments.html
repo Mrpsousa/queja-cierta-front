@@ -23,4 +23,58 @@
       </div>
     </div>
   </section>
+
+  <section class="subsegments-controls page-shell" aria-label="Filtros de ranking">
+    <div class="subsegments-controls__tabs" role="group" aria-label="Ordenar empresas">
+      <button
+        type="button"
+        class="subsegments-controls__tab"
+        [class.is-active]="selectedRanking === 'verified'"
+        [attr.aria-pressed]="selectedRanking === 'verified'"
+        (click)="onSelectRanking('verified')"
+      >
+        <svg class="subsegments-controls__tab-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2.5 4 7v5.8c0 4.2 3 8.2 8 9.7 5-1.5 8-5.5 8-9.7V7l-8-4.5z" />
+          <path d="m10.1 12.7 1.8 1.8 3.9-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" />
+        </svg>
+        <span>Verificadas</span>
+      </button>
+
+      <button
+        type="button"
+        class="subsegments-controls__tab"
+        [class.is-active]="selectedRanking === 'best'"
+        [attr.aria-pressed]="selectedRanking === 'best'"
+        (click)="onSelectRanking('best')"
+      >
+        <span>Melhores</span>
+      </button>
+
+      <button
+        type="button"
+        class="subsegments-controls__tab"
+        [class.is-active]="selectedRanking === 'worst'"
+        [attr.aria-pressed]="selectedRanking === 'worst'"
+        (click)="onSelectRanking('worst')"
+      >
+        <span>Piores</span>
+      </button>
+    </div>
+
+    <form class="subsegments-controls__search" role="search" (submit)="onSearchSubmit($event)">
+      <label class="sr-only" for="subsegments-search">Pesquise por uma empresa</label>
+      <input
+        id="subsegments-search"
+        type="search"
+        placeholder="Pesquise por uma empresa"
+        autocomplete="off"
+      />
+      <button type="submit" aria-label="Pesquisar">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2" />
+          <path d="m20 20-4.2-4.2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" />
+        </svg>
+      </button>
+    </form>
+  </section>
 </main>
