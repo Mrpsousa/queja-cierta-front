@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 type RankingMode = 'best' | 'worst';
 
@@ -30,6 +31,7 @@ interface CategoryRanking {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainContentComponent {
+  constructor(private router: Router) {}
   rankingMode: RankingMode = 'best';
   selectedCategory = 'ecommerce';
 
@@ -122,5 +124,9 @@ export class MainContentComponent {
 
   formatPosition(index: number): string {
     return String(index + 1).padStart(2, '0');
+  }
+
+  goToSegments(): void {
+    this.router.navigate(['/segments']);
   }
 }
