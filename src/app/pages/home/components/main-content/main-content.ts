@@ -127,6 +127,6 @@ export class MainContentComponent {
   }
 
   goToSegments(): void {
-    this.router.navigate(['/segments']);
+    this.router.navigate(['/segmentos']);
   }
 }

@@ -168,10 +168,21 @@ export class SegmentsGridComponent implements AfterViewInit {
   constructor() {
     // Ensure each segment has the correct number of items (mock if necessary)
     this.segments.forEach((s) => {
+      const segmentSlug = slugify(s.title);
       const current = s.items?.length ?? 0;
       const needed = s.count - current;
+
+      s.items = s.items.map((item) => ({
+        ...item,
+        href: `/segmentos/${segmentSlug}/${slugify(item.title)}`,
+      }));
+
       for (let i = 0; i < needed; i++) {
-        s.items.push({ title: `${s.title} — Categoría ${current + i + 1}` });
+        const title = `${s.title} — Categoría ${current + i + 1}`;
+        s.items.push({
+          title,
+          href: `/segmentos/${segmentSlug}/${slugify(title)}`,
+        });
       }
     });
   }
@@ -213,4 +224,13 @@ export class SegmentsGridComponent implements AfterViewInit {
     const nextCount = width >= 980 ? 3 : width >= 620 ? 2 : 1;
     this.columnCount.set(nextCount);
   }
+}
+
+function slugify(value: string): string {
+  return value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 }

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 export interface SegmentItem {
@@ -9,7 +10,7 @@ export interface SegmentItem {
 @Component({
   selector: 'app-segment-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './segment-card.html',
   styleUrl: './segment-card.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
