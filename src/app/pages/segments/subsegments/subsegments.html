@@ -20,7 +20,14 @@
     <div class="subsegments-filters__spacer" aria-hidden="true"></div>
 
     <div class="subsegments-tabs" role="tablist" aria-label="Ranking">
-      <button class="subsegments-tab" type="button" role="tab" aria-selected="false">
+      <button
+        class="subsegments-tab"
+        type="button"
+        role="tab"
+        [class.is-active]="currentFilter === 'verified'"
+        [attr.aria-selected]="currentFilter === 'verified'"
+        (click)="setFilter('verified')"
+      >
         <span class="subsegments-tab__icon" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z" />
@@ -29,14 +36,39 @@
         </span>
         Verificadas
       </button>
-      <button class="subsegments-tab is-active" type="button" role="tab" aria-selected="true">Melhores</button>
-      <button class="subsegments-tab" type="button" role="tab" aria-selected="false">Piores</button>
+      <button
+        class="subsegments-tab"
+        type="button"
+        role="tab"
+        [class.is-active]="currentFilter === 'best'"
+        [attr.aria-selected]="currentFilter === 'best'"
+        (click)="setFilter('best')"
+      >
+        Melhores
+      </button>
+      <button
+        class="subsegments-tab"
+        type="button"
+        role="tab"
+        [class.is-active]="currentFilter === 'worst'"
+        [attr.aria-selected]="currentFilter === 'worst'"
+        (click)="setFilter('worst')"
+      >
+        Piores
+      </button>
     </div>
 
-    <form class="subsegments-search" role="search">
+    <form class="subsegments-search" role="search" (submit)="$event.preventDefault()">
       <label for="subsegments-search" class="sr-only">Pesquisar por uma empresa</label>
-      <input id="subsegments-search" type="search" placeholder="Pesquise por uma empresa" />
-      <button type="submit" aria-label="Pesquisar">
+      <input
+        id="subsegments-search"
+        type="search"
+        [value]="searchQuery"
+        (input)="setSearchQuery(searchInput.value)"
+        #searchInput
+        placeholder="Pesquise por uma empresa"
+      />
+      <button type="button" aria-label="Pesquisar">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <circle cx="11" cy="11" r="8" />
           <line x1="21" y1="21" x2="16.65" y2="16.65" />
@@ -45,4 +77,175 @@
     </form>
   </div>
 </section>
+
+<main class="subsegments-main">
+  <div class="page-shell subsegments-container">
+    <section class="subsegments-ranking" aria-label="Empresas">
+      @if (pagedCompanies.length) {
+        @for (company of pagedCompanies; track company.id) {
+          <article class="company-card">
+            <div
+              class="company-rank"
+              [class.company-rank--top1]="company.displayRank === 1"
+              [class.company-rank--top2]="company.displayRank === 2"
+              [class.company-rank--top3]="company.displayRank === 3"
+              [class.company-rank--worst]="currentFilter === 'worst'"
+            >
+              <span class="company-rank__pos">{{ company.displayRank }}º</span>
+              @if (currentFilter !== 'worst') {
+                <span class="company-rank__trophy" [class.company-rank__trophy--ghost]="company.displayRank > 3" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M8 4h8v4a4 4 0 0 1-8 0V4z" />
+                    <path d="M6 4H4a2 2 0 0 0 2 6" />
+                    <path d="M18 4h2a2 2 0 0 1-2 6" />
+                    <path d="M12 12v4" />
+                    <path d="M8 20h8" />
+                    <path d="M9 16h6" />
+                  </svg>
+                </span>
+              }
+            </div>
+
+            <div class="company-card__grid">
+              <div class="company-card__left">
+                <div class="company-meta">
+                  <div class="company-logo" [attr.aria-label]="'Logo ' + company.name">
+                    @if (company.logoUrl) {
+                      <img [src]="company.logoUrl" [alt]="'Logo ' + company.name" />
+                    } @else {
+                      <span aria-hidden="true">{{ getCompanyInitials(company.name) }}</span>
+                    }
+                  </div>
+
+                  <div class="company-info">
+                    <div class="company-titleRow">
+                      <a class="company-name" href="#">{{ company.name }}</a>
+                      @if (company.verified) {
+                        <span class="company-verified" aria-label="Empresa verificada">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z" />
+                            <path d="M9 12l2 2 4-4" />
+                          </svg>
+                        </span>
+                      }
+                    </div>
+
+                    <div class="company-stats">
+                      @if (company.verified) {
+                        <span class="company-chip company-chip--verified">
+                          <span class="company-chip__icon" aria-hidden="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                              <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z" />
+                              <path d="M9 12l2 2 4-4" />
+                            </svg>
+                          </span>
+                          Verificada
+                        </span>
+                      }
+
+                      <span class="company-chip company-chip--rating">
+                        <span class="company-chip__icon" aria-hidden="true">😊</span>
+                        {{ company.ratingLabel }}
+                      </span>
+
+                      <span class="company-score">
+                        <span class="company-score__value">{{ company.ratingValue }}</span><span class="company-score__max">/10</span>
+                      </span>
+
+                      <span class="company-solved">
+                        Resolveu {{ company.solvedPercent }}% das {{ company.totalComplaints }} reclamações
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <label class="company-compare">
+                  <input type="checkbox" />
+                  Comparar
+                </label>
+              </div>
+
+              <div class="company-card__right">
+                <a class="company-cta" href="#">Saiba mais</a>
+              </div>
+            </div>
+          </article>
+        }
+      } @else {
+        <article class="company-card company-card--empty">
+          <p class="company-empty-title">Nenhuma empresa encontrada</p>
+          <p class="company-empty-text">Tente outro termo de busca ou troque o filtro para ver mais resultados.</p>
+          <button class="company-empty-action" type="button" (click)="setFilter('all')">Limpar filtro</button>
+        </article>
+      }
+    </section>
+
+    <nav class="subsegments-pagination" aria-label="Paginação">
+      <button
+        class="pagination-btn"
+        type="button"
+        aria-label="Primeira página"
+        [disabled]="currentPage === 1"
+        (click)="goFirst()"
+      >
+        <span aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 6L13 12l6 6" />
+            <path d="M11 6L5 12l6 6" />
+          </svg>
+        </span>
+      </button>
+
+      <button
+        class="pagination-btn"
+        type="button"
+        aria-label="Página anterior"
+        [disabled]="currentPage === 1"
+        (click)="goPrev()"
+      >
+        <span aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </span>
+      </button>
+
+      <div class="pagination-label" aria-live="polite">
+        {{ currentPage }} de {{ totalPages }} · {{ visibleCount }} itens
+      </div>
+
+      <button
+        class="pagination-btn"
+        type="button"
+        aria-label="Próxima página"
+        [disabled]="currentPage === totalPages"
+        (click)="goNext()"
+      >
+        <span aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 6l6 6-6 6" />
+          </svg>
+        </span>
+      </button>
+
+      <button
+        class="pagination-btn"
+        type="button"
+        aria-label="Última página"
+        [disabled]="currentPage === totalPages"
+        (click)="goLast()"
+      >
+        <span aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 6l6 6-6 6" />
+            <path d="M13 6l6 6-6 6" />
+          </svg>
+        </span>
+      </button>
+    </nav>
+  </div>
+</main>
+
+
+<app-add></app-add>
 <app-footer></app-footer>
