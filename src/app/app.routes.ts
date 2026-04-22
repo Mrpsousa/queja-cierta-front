@@ -7,17 +7,32 @@ export const routes: Routes = [
             import('./pages/home/home').then((module) => module.HomeComponent),
     },
     {
-        path: 'segments',
+        path: 'segmentos',
         loadComponent: () =>
             import('./pages/segments/segments').then(
                 (module) => module.Segments
             ),
     },
     {
-        path: 'subsegments',
+        path: 'segments',
+        redirectTo: 'segmentos',
+        pathMatch: 'full',
+    },
+    {
+        path: 'segmentos/:segmentoSlug/:subsegmentoSlug',
         loadComponent: () =>
             import('./pages/segments/subsegments/subsegments').then(
                 (module) => module.Subsegments
             ),
-    }
+    },
+    {
+        path: 'subsegments',
+        redirectTo: 'segmentos',
+        pathMatch: 'full',
+    },
+    {
+        path: 'subsegments/:segmentoSlug/:subsegmentoSlug',
+        redirectTo: 'segmentos/:segmentoSlug/:subsegmentoSlug',
+        pathMatch: 'full',
+    },
 ];

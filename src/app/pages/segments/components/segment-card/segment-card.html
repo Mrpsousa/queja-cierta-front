@@ -14,7 +14,7 @@
   <div class="segment-card__body" *ngIf="expanded">
     <ul class="segment-card__list">
       <li *ngFor="let it of items">
-        <a [href]="it.href || '#'">{{ it.title }}</a>
+        <a [routerLink]="it.href || '#'">{{ it.title }}</a>
       </li>
     </ul>
   </div>
