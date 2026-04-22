@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NavbarComponent } from "../../../layout/components/navbar";
 import { FooterComponent } from "../../../layout/components/footer/footer";
+import { AddComponent } from "../../../layout/components/add/add";
 
 type CompanyRatingLabel = 'Ótimo' | 'Bom' | 'Regular' | 'Ruim';
+type RankingFilter = 'all' | 'verified' | 'best' | 'worst';
 
 interface CompanyCardModel {
   id: string;
@@ -17,14 +19,23 @@ interface CompanyCardModel {
   logoUrl?: string;
 }
 
+interface RankedCompanyCardModel extends CompanyCardModel {
+  displayRank: number;
+}
+
 @Component({
   selector: 'app-subsegments',
-  imports: [NavbarComponent, FooterComponent, RouterLink],
+  imports: [NavbarComponent, FooterComponent, RouterLink, AddComponent],
   templateUrl: './subsegments.html',
   styleUrl: './subsegments.css',
 })
 export class Subsegments {
   readonly pageSize = 10;
+  readonly filters: Array<{ id: RankingFilter; label: string }> = [
+    { id: 'verified', label: 'Verificadas' },
+    { id: 'best', label: 'Melhores' },
+    { id: 'worst', label: 'Piores' },
+  ];
 
   companies: CompanyCardModel[] = [
     {
@@ -147,17 +158,110 @@ export class Subsegments {
       solvedPercent: 42.0,
       totalComplaints: 63,
     },
+    {
+      id: 'topline-casting',
+      rank: 13,
+      name: 'Topline Casting',
+      verified: true,
+      ratingLabel: 'Ótimo',
+      ratingValue: 8.9,
+      solvedPercent: 95.1,
+      totalComplaints: 19,
+    },
+    {
+      id: 'north-star-models',
+      rank: 14,
+      name: 'North Star Models',
+      verified: false,
+      ratingLabel: 'Bom',
+      ratingValue: 7.1,
+      solvedPercent: 69.3,
+      totalComplaints: 44,
+    },
+    {
+      id: 'atelier-face',
+      rank: 15,
+      name: 'Atelier Face',
+      verified: true,
+      ratingLabel: 'Ótimo',
+      ratingValue: 8.2,
+      solvedPercent: 89.7,
+      totalComplaints: 22,
+    },
+    {
+      id: 'pulse-agency',
+      rank: 16,
+      name: 'Pulse Agency',
+      verified: false,
+      ratingLabel: 'Regular',
+      ratingValue: 6.1,
+      solvedPercent: 58.4,
+      totalComplaints: 48,
+    },
+    {
+      id: 'premier-casting',
+      rank: 17,
+      name: 'Premier Casting',
+      verified: true,
+      ratingLabel: 'Bom',
+      ratingValue: 7.9,
+      solvedPercent: 83.6,
+      totalComplaints: 31,
+    },
+    {
+      id: 'orbit-models',
+      rank: 18,
+      name: 'Orbit Models',
+      verified: false,
+      ratingLabel: 'Ruim',
+      ratingValue: 5.2,
+      solvedPercent: 47.8,
+      totalComplaints: 59,
+    },
   ];
 
   currentPage = 1;
+  currentFilter: RankingFilter = 'best';
+  searchQuery = '';
 
-  get totalPages(): number {
-    return Math.max(1, Math.ceil(this.companies.length / this.pageSize));
+  get rankedCompanies(): RankedCompanyCardModel[] {
+    const query = this.searchQuery.trim().toLowerCase();
+    let list = [...this.companies];
+
+    if (this.currentFilter === 'verified') {
+      list = list.filter((company) => company.verified);
+    } else if (this.currentFilter === 'best') {
+      list = list.sort((a, b) => b.ratingValue - a.ratingValue || a.rank - b.rank);
+    } else if (this.currentFilter === 'worst') {
+      list = list.sort((a, b) => a.ratingValue - b.ratingValue || a.rank - b.rank);
+    }
+
+    if (query) {
+      list = list.filter((company) => company.name.toLowerCase().includes(query));
+    }
+
+    if (this.currentFilter === 'all' || this.currentFilter === 'verified') {
+      list = list.sort((a, b) => a.rank - b.rank);
+    }
+
+    return list.map((company, index) => ({
+      ...company,
+      displayRank:
+        this.currentFilter === 'worst' ? index + 1 : company.rank,
+    }));
   }
 
-  get pagedCompanies(): CompanyCardModel[] {
+  get totalPages(): number {
+    return Math.max(1, Math.ceil(this.rankedCompanies.length / this.pageSize));
+  }
+
+  get pagedCompanies(): RankedCompanyCardModel[] {
     const start = (this.currentPage - 1) * this.pageSize;
-    return this.companies.slice(start, start + this.pageSize);
+    return this.rankedCompanies.slice(start, start + this.pageSize);
+  }
+
+  get visibleCount(): number {
+    return this.rankedCompanies.length;
   }
 
   getCompanyInitials(name: string): string {
@@ -176,6 +280,17 @@ export class Subsegments {
     if (nextPage === this.currentPage) return;
     this.currentPage = nextPage;
     this.scrollToTop();
+  }
+
+  setFilter(filter: RankingFilter): void {
+    this.currentFilter = filter;
+    this.currentPage = 1;
+    this.scrollToTop();
+  }
+
+  setSearchQuery(value: string): void {
+    this.searchQuery = value;
+    this.currentPage = 1;
   }
 
   goFirst(): void {
